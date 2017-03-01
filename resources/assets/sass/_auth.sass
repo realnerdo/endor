@@ -1,0 +1,45 @@
+// Auth
+
+.auth
+    background: $cloud
+    height: 100vh
+    width: 100vw
+    .auth-form
+        animation: auth 0.6s forwards $bouncy
+        background: linear-gradient(rgba($navy, 0.5), rgba($navy, 1)), url('../img/login-bg.jpg') top center / cover
+        border-radius: rem(5px)
+        box-shadow: 0 3px 14px 2px rgba($black, 0.3)
+        color: $white
+        left: 50%
+        padding: 1rem 2rem
+        position: absolute
+        text-align: center
+        transform: translateX(-50%)
+        width: rem(300px)
+        &.login-form
+            top: 20%
+        &.register-form
+            top: 10%
+        .title
+            font-weight: 400
+            margin: 1rem 0
+        .form-group
+            margin-bottom: 1rem
+            .label
+                +font-size(16px)
+                display: block
+                margin-bottom: 0.5rem
+            .input
+                +font-size(16px)
+                background: $cloud
+                border: 0
+                border-radius: rem(3px)
+                color: $navy
+                font-family: $sans
+                padding: 0.8rem 1rem
+                text-align: center
+                width: 100%
+            .btn
+                +font-size(16px)
+            .link
+                color: $white

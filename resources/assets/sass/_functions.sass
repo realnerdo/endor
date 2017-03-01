@@ -1,0 +1,11 @@
+// Functions
+
+$base-font-size: 14px
+
+@function rem($size)
+    $rem-size: $size / $base-font-size
+    @return $rem-size * 1rem
+
+@function em($size)
+    $em-size: $size / $base-font-size
+    @return $em-size * 1em

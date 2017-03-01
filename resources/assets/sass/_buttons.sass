@@ -1,0 +1,29 @@
+// Buttons
+
+.btn
+    +font-size(14px)
+    appearance: none
+    border: 0
+    border-radius: rem(3px)
+    display: inline-block
+    font-family: $sans
+    font-weight: 400
+    padding: .7rem 1rem
+    text-align: center
+    text-decoration: none
+    &:hover
+        cursor: pointer
+    &.btn-green
+        background: $green
+        color: $white
+    &.btn-blue
+        background: $blue
+        color: $white
+    &.btn-red
+        background: $red
+        color: $white
+.buttons
+    .btn
+        margin-right: .5rem
+        &:last-child
+            margin: 0

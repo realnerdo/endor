@@ -1,0 +1,245 @@
+// Print
+
+@import '_fonts'
+@import 'https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,700'
+@import 'https://fonts.googleapis.com/css?family=Lato:300,400'
+@import 'https://fonts.googleapis.com/css?family=Roboto:400,700'
+@import '_functions'
+@import '_mixins'
+@import '_colors'
+@import '_general'
+
+body
+    background: $white
+
+#estimate
+    font-family: 'Lato', sans-serif
+    font-weight: 300
+    padding: 0 6rem
+    width: 100%
+    .title
+        font-family: 'Cormorant Garamond', serif
+    .data
+        padding-top: 4rem
+        margin-bottom: 2rem
+        b
+            font-family: 'Cormorant Garamond', serif
+            +font-size(16px)
+            font-weight: 700
+    .description
+        margin-bottom: 2rem
+        padding-left: 2rem
+    & > .content
+        padding-left: 2rem
+        margin-bottom: 3rem
+        & > .title
+            position: relative
+            display: inline-block
+            margin-bottom: 1rem
+            &:before
+                position: absolute
+                content: ''
+                background: #B53B45
+                width: .8rem
+                height: 1px
+                bottom: -.4rem
+                left: 0
+        .service_list
+            .service
+                margin-bottom: 1rem
+                padding-top: 3rem
+                page-break-after: always //?
+                .title
+                    +font-size(16px)
+                ul
+                    list-style: url(../img/bullet.svg)
+                    padding-left: 3rem
+                    li
+                        margin-bottom: .5rem
+                h1
+                    +font-size(16px)
+                    font-family: 'Cormorant Garamond', serif
+                    font-weight: 700
+                    margin-top: 1rem
+                    margin-bottom: 1rem
+                    position: relative
+                    padding-left: .8rem
+                    &:before
+                        content: ''
+                        position: absolute
+                        left: 0
+                        top: .35rem
+                        width: rem(10px)
+                        height: rem(10px)
+                        background: url(../img/bullet.svg) no-repeat
+    .calendar
+        padding-top: 3rem
+        padding-left: 2rem
+        margin-bottom: 3rem
+        .title
+            position: relative
+            display: inline-block
+            margin-bottom: 3rem
+            &:before
+                position: absolute
+                content: ''
+                background: #B53B45
+                width: .8rem
+                height: 1px
+                bottom: -.4rem
+                left: 0
+        .subtitle
+            +font-size(16px)
+            font-family: 'Cormorant Garamond', serif
+            font-weight: 700
+            margin-bottom: 3rem
+            span
+                font-family: 'Lato', sans-serif
+                font-weight: 300
+        .table
+            .label
+                +font-size(16px)
+                font-family: 'Cormorant Garamond', serif
+                font-weight: 700
+            .service
+                .label
+                    background: #EBEBEC
+                    padding: .2rem .4rem
+                .offset
+                    background: #EBF3F7
+                .duration
+                    background: #B2BDC4
+            .days
+                background: $gray
+                text-align: center
+                font-weight: 400
+                padding: .3rem
+            .days_full
+                width: rem(10px)
+    .investment
+        padding-left: 2rem
+        margin-bottom: 3rem
+        & > .title
+            position: relative
+            display: inline-block
+            margin-bottom: 2rem
+            &:before
+                position: absolute
+                content: ''
+                background: #B53B45
+                width: .8rem
+                height: 1px
+                bottom: -.4rem
+                left: 0
+        .subtitle
+            +font-size(16px)
+            font-family: 'Cormorant Garamond', serif
+            font-weight: 700
+            margin-bottom: 1rem
+            padding-left: 1rem
+            & + .table
+                padding-left: 1rem
+        .subtitle_discount
+            +font-size(16px)
+            font-family: 'Cormorant Garamond', serif
+            font-weight: 700
+            margin-bottom: 1rem
+        .table
+            margin-bottom: 1rem
+            .title
+                +font-size(17px)
+                background: #DDDCDC
+                color: #58595B
+                padding: .2rem .4rem
+                width: rem(100px)
+            .price
+                +font-size(17px)
+                background: #F1F2F2
+                font-family: 'Roboto', sans-serif
+                font-weight: 700
+                padding: .2rem .4rem
+                width: rem(200px)
+                .symbol
+                    color: #B53B45
+                .qty
+                    color: #58595B
+                .details
+                    +font-size(13px)
+                    color: #A7A9AC
+                    font-weight: 400
+    .notes
+        page-break-before: always
+        padding-left: 2rem
+        padding-top: 3rem
+        margin-bottom: 3rem
+        .title
+            position: relative
+            display: inline-block
+            margin-bottom: 2rem
+            &:before
+                position: absolute
+                content: ''
+                background: #B53B45
+                width: .8rem
+                height: 1px
+                bottom: -.4rem
+                left: 0
+        .list
+            list-style: url(../img/bullet.svg)
+            padding-left: 1rem
+            .item
+                margin-bottom: .5rem
+    .bank_details
+        padding-left: 2rem
+        margin-bottom: 3rem
+        .title
+            position: relative
+            display: inline-block
+            margin-bottom: 2rem
+            &:before
+                position: absolute
+                content: ''
+                background: #B53B45
+                width: .8rem
+                height: 1px
+                bottom: -.4rem
+                left: 0
+    .address
+        padding-left: 2rem
+        margin-bottom: 3rem
+        .title
+            position: relative
+            display: inline-block
+            margin-bottom: 2rem
+            &:before
+                position: absolute
+                content: ''
+                background: #B53B45
+                width: .8rem
+                height: 1px
+                bottom: -.4rem
+                left: 0
+    .footer
+        padding-bottom: 2rem
+        .signatures
+            +clear
+            padding-top: 5rem
+            width: 100%
+            .employee,
+            .client
+                float: left
+                width: 50%
+                text-align: center
+                position: relative
+                +font-size(16px)
+                font-family: 'Cormorant Garamond', serif
+                font-weight: 700
+                &:before
+                    position: absolute
+                    content: ''
+                    height: 1px
+                    width: rem(200px)
+                    background: $black
+                    top: -.5rem
+                    left: 50%
+                    transform: translateX(-50%)

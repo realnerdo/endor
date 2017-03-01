@@ -1,0 +1,189 @@
+// Table
+
+.table
+    border-collapse: collapse
+    width: 100%
+    thead
+        background: $green
+        th
+            +font-size(16px)
+            color: $white
+            font-weight: 400
+            padding: 1rem
+            text-align: left
+            &:first-child
+                border-top-left-radius: rem(3px)
+            &:last-child
+                border-top-right-radius: rem(3px)
+    tfoot
+        border-top: 2rem solid $white
+    tbody,
+    tfoot
+        tr
+            background: $white
+            &:nth-child(odd)
+                background: #f8f8f8
+            td
+                +font-size(16px)
+                padding: 1rem
+                .product-title
+                    +font-size(16px)
+                    font-weight: bold
+                .product-category,
+                .product-brand,
+                .product-dimensions
+                    +font-size(14px)
+                .link
+                    color: $blue
+                    text-decoration: none
+                    &:hover
+                        text-decoration: underline
+                .input
+                    &.qty,
+                    &.discount
+                        +font-size(16px)
+                        background: $white
+                        border: 1px solid $gray
+                        border-radius: rem(3px)
+                        color: $dark
+                        font-family: $sans
+                        padding: .5rem
+                        width: rem(70px)
+                .delete-row
+                    background: none
+                    border: 0
+                    color: $red
+                    font: inherit
+                    &:hover
+                        cursor: pointer
+                .badge
+                    +font-size(13px)
+                    border-radius: rem(3px)
+                    color: $white
+                    display: inline-block
+                    padding: .3rem .5rem
+                    text-align: center
+                    &.discount
+                        +font-size(18px)
+                    &.badge-green
+                        background: $success
+                    &.badge-blue
+                        background: $blue
+                    &.badge-yellow
+                        background: $yellow
+                    &.badge-red
+                        background: $red
+                .price
+                    +font-size(17px)
+                    color: $greener
+                    font-weight: 400
+                    &.with-sale
+                        text-decoration: line-through
+                .dropdown
+                    +font-size(20px)
+                    color: inherit
+                    cursor: pointer
+                    display: inline-block
+                    position: relative
+                    .list
+                        +opacity(0)
+                        background: $white
+                        border-radius: rem(3px)
+                        box-shadow: 0 2px 5px 3px rgba($black, 0.1)
+                        left: 0
+                        list-style: none
+                        overflow: hidden
+                        position: absolute
+                        top: 0
+                        z-index: 10
+                        &.open
+                            +opacity(1)
+                        .item
+                            .link
+                                +font-size(16px)
+                                background: none
+                                border: 0
+                                color: inherit
+                                display: block
+                                font-family: inherit
+                                padding: .5rem .8rem
+                                text-align: left
+                                text-decoration: none
+                                width: 100%
+                                &:hover
+                                    background: rgba($black, 0.1)
+                                    cursor: pointer
+                .product-photo
+                    border-radius: rem(3px)
+                    height: rem(100px)
+                    overflow: hidden
+                    position: relative
+                    width: rem(100px)
+                    .img
+                        position: relative
+                        top: 50%
+                        transform: translateY(-50%)
+                        width: 100%
+.empty
+    text-align: center
+    .typcn
+        +font-size(80px)
+        font-weight: 400
+    .title
+        +font-size(28px)
+        font-weight: 400
+        margin-bottom: 3rem
+.pagination
+    text-align: center
+    .list
+        +clear
+        display: inline-block
+        list-style: none
+        .item
+            float: left
+            margin-right: .5rem
+            .link,
+            span
+                +font-size(14px)
+                border-radius: rem(3px)
+                display: inline-block
+                font-family: $sans
+                font-weight: 400
+                padding: .4rem .8rem
+                text-align: center
+                text-decoration: none
+            .link
+                background: $green
+                color: $white
+            span
+                background: $gray
++bp($large)
+    .table, thead, tbody, tfoot, th, td, tr
+        display: block
+    .table
+        thead
+            tr
+                left: -9999px
+                position: absolute
+                top: -9999px
+        tbody
+            td
+                padding-left: 50%!important
+                position: relative
+                &:before
+                    background: $green
+                    bottom: 0
+                    border-bottom: 2px solid $white
+                    color: $white
+                    content: attr(data-th)
+                    left: 0
+                    padding-right: 10px
+                    padding: 1rem
+                    position: absolute
+                    top: 0
+                    white-space: nowrap
+                    width: 45%
+        tfoot
+            td
+                text-align: right
+

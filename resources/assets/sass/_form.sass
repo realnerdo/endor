@@ -1,0 +1,48 @@
+// Form
+
+.form
+    .form-group
+        margin-bottom: 1rem
+        .picture
+            margin-bottom: 1rem
+            max-width: 100%
+            .img
+                max-height: rem(400px)
+                min-width: rem(150px)
+                width: auto
+        .link
+            color: $blue
+            text-decoration: none
+            &:hover
+                text-decoration: underline
+        .label
+            display: block
+            margin-bottom: .5rem
+        .input
+            +font-size(16px)
+            background: $white
+            border: 1px solid $gray
+            border-radius: rem(3px)
+            color: $dark
+            font-family: $sans
+            padding: .5rem
+            resize: none
+            width: 100%
+        .select2-container
+            .select2-selection
+                border: 1px solid $gray
+                border-radius: rem(3px)
+                height: auto
+                .select2-selection__rendered
+                    padding: .15rem .5rem
+                .select2-selection__arrow
+                    height: 100%
+    &.search
+        [class^="col-"]
+            padding: .5rem
+            .form-group
+                margin: 0
+    &.estimate_form
+        +bp('max-width: 1000px')
+            .col-3
+                width: 50%

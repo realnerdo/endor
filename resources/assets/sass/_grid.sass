@@ -1,0 +1,46 @@
+// Grid
+
+=bp($size)
+    @media only screen and ($size)
+        @content
+
+$columns: 12
+$gutter: 1rem
+$max-width: 1200px
+
+$large-size: 1200px
+$medium-size: 768px
+$small-size: 680px
+$xsmall-size: 320px
+
+$large: "max-width: " + $large-size
+$medium: "max-width: " + $medium-size
+$small: "max-width: " + $small-size
+$xsmall: "max-width: " + $xsmall-size
+
+.wrapper
+    margin: 0 auto
+    width: $max-width
+
+.wrapper::after,
+.row::after
+    clear: both
+    content: ' '
+    display: table
+
+[class*='col-']
+    float: left
+    min-height: 1px
+    padding: $gutter
+    width: 100%
+    &.no-padding
+        padding: 0
+
++bp('min-width: 20em')
+    .wrapper
+        max-width: $max-width
+        width: 100%
+
+    @for $i from 1 through $columns
+        .col-#{$i}
+            width: 100% / $columns * $i
