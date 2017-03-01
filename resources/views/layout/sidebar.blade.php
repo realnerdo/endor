@@ -1,11 +1,7 @@
 <aside class="sidebar">
     <header class="header">
         <a href="{{ url('/') }}" class="logo">
-            @if (isset($settings->logo->url))
-                <img src="{{ asset('storage/'.$settings->logo->url) }}" alt="{{ $settings->title }}" class="img">
-            @else
-                <img src="{{ asset('img/logo_white.svg') }}" alt="{{ $settings->title }}" class="img">
-            @endif
+            <img src="{{ asset('img/logo_white.svg') }}" alt="{{ $settings->title }}" class="img">
         </a>
         <!-- /.logo -->
         <h2 class="title">{{ $settings->title }}</h2>

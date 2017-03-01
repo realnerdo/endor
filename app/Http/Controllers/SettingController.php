@@ -41,10 +41,18 @@ class SettingController extends Controller
     {
         if($request->hasFile('logo')){
             $url = $request->file('logo')->store('public/logo');
-            $setting->logo->update([
-                'original_name' => $request->file('logo')->getClientOriginalName(),
-                'url' => str_replace('public/', '', $url)
-            ]);
+            if(is_null($setting->logo)){
+                $picture = Picture::create([
+                    'original_name' => $request->file('logo')->getClientOriginalName(),
+                    'url' => str_replace('public/', '', $url)
+                ]);
+                $setting->update(['logo_id' => $picture->id]);
+            }else{
+                $setting->logo->update([
+                    'original_name' => $request->file('logo')->getClientOriginalName(),
+                    'url' => str_replace('public/', '', $url)
+                ]);
+            }
         }
         $setting->update($request->all());
         session()->flash('flash_message', 'Se han actualizado los ajustes');

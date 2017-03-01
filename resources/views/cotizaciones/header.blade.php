@@ -34,7 +34,11 @@
 <body>
 	<header class="header">
 	    <div class="logo">
-	        <img src="{{ asset('img/logo_black.svg') }}" alt="Endor">
+	    	@if($setting->logo->url)
+	        	<img src="{{ asset('storage/'.$setting->logo->url) }}" alt="Endor">
+	        @else
+	        	<img src="{{ asset('img/logo_black.svg') }}" alt="Endor">
+	        @endif
 	    </div><!-- /.logo -->
 	    <div class="info">
 	        <div class="folio">Folio: {{ $estimate->folio }}</div><!-- /.folio -->

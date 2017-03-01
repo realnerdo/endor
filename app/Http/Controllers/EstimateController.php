@@ -157,7 +157,8 @@ class EstimateController extends Controller
 
     private function pdfHeader($estimate)
     {
-        return view('cotizaciones.header', compact('estimate'));
+        $setting = Setting::latest()->first();
+        return view('cotizaciones.header', compact('estimate', 'setting'));
     }
 
     private function pdfFooter()
