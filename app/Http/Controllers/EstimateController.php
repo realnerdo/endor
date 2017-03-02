@@ -66,7 +66,7 @@ class EstimateController extends Controller
     public function store(EstimateRequest $request)
     {
         $latest = Estimate::latest()->first();
-        $folio = (is_null($latest)) ? sprintf('%05d', 1) : sprintf('%05d', substr($latest->folio, 0, -1) + 1);
+        $folio = (is_null($latest)) ? sprintf('%05d', 1) : sprintf('%05d', substr($latest->folio, 0, 5) + 1);
 
         $initials = '';
         $names = preg_split("/\s+/", Auth::user()->name);

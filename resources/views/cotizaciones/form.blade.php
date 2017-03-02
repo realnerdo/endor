@@ -78,7 +78,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         {{ Form::label('services[0][offset]', 'Inicio', ['class' => 'label']) }}
-                        {{ Form::input('text', 'services[0][offset]', null, ['class' => 'input service_offset', 'id' => '', 'required']) }}
+                        {{ Form::input('text', 'services[0][offset]', 0, ['class' => 'input service_offset', 'id' => '', 'required']) }}
                     </div>
                     <!-- /.form-group -->
                 </div>
