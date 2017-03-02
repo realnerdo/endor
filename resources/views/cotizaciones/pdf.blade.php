@@ -56,9 +56,14 @@
                     </tr>
                     <tr>
                         <td class="sep"></td><!-- /.sep -->
-                        @for ($i = 0; $i < $days / 5; $i++)
-                            <td class="days" colspan="5">
-                                {{ ($i+1)*5 }}
+                        @php
+                            if($days % 2 == 0) $divider = 2;
+                            if($days % 3 == 0) $divider = 3;
+                            if($days % 5 == 0) $divider = 5;
+                        @endphp
+                        @for ($i = 0; $i < $days / $divider; $i++)
+                            <td class="days" colspan="{{ $divider }}">
+                                {{ ($i+1)*$divider }}
                             </td><!-- /.days -->
                         @endfor
                     </tr>
