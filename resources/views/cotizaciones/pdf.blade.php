@@ -57,6 +57,7 @@
                     <tr>
                         <td class="sep"></td><!-- /.sep -->
                         @php
+                            $divider = 2;
                             if($days % 2 == 0) $divider = 2;
                             if($days % 3 == 0) $divider = 3;
                             if($days % 5 == 0) $divider = 5;
