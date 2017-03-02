@@ -867,6 +867,11 @@ img {
   width: 100%;
 }
 
+.form .form-group .input[readonly] {
+  background: #ecf0f1;
+  cursor: not-allowed;
+}
+
 .form .form-group .select2-container .select2-selection {
   border: 1px solid #ccc;
   border-radius: 0.2142857143rem;

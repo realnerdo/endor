@@ -41,8 +41,8 @@
     <!-- /.col-6 -->
     <div class="col-3">
         <div class="form-group">
-            {{ Form::label('total', 'Total', ['class' => 'label']) }}
-            {{ Form::input('text', 'total', null, ['class' => 'input', 'required']) }}
+            {{ Form::label('total', 'Total (Se calcula automáticamente)', ['class' => 'label']) }}
+            {{ Form::input('text', 'total', null, ['class' => 'input', 'required', 'readonly']) }}
         </div><!-- /.form-group -->
     </div><!-- /.col-3 -->
     <div class="col-3">
@@ -63,14 +63,14 @@
                 <div class="col-3">
                     <div class="form-group">
                         {{ Form::label('services[0][title]', 'Título del servicio', ['class' => 'label']) }}
-                        {{ Form::select('services[0][title]', $services, null, ['class' => 'select2-add service_title', 'id' => '', 'data-placeholder' => 'Selecciona un servicio']) }}
+                        {{ Form::select('services[0][title]', $services, null, ['class' => 'select2-add service_title', 'id' => '', 'data-placeholder' => 'Selecciona un servicio', 'required']) }}
                     </div>
                     <!-- /.form-group -->
                 </div><!-- /.col-3 -->
                 <div class="col-3">
                     <div class="form-group">
                         {{ Form::label('services[0][duration]', 'Duración (días)', ['class' => 'label']) }}
-                        {{ Form::input('text', 'services[0][duration]', null, ['class' => 'input service_duration', 'id' => '']) }}
+                        {{ Form::input('text', 'services[0][duration]', null, ['class' => 'input service_duration', 'id' => '', 'required']) }}
                     </div>
                     <!-- /.form-group -->
                 </div>
@@ -78,7 +78,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         {{ Form::label('services[0][offset]', 'Inicio', ['class' => 'label']) }}
-                        {{ Form::input('text', 'services[0][offset]', null, ['class' => 'input service_offset', 'id' => '']) }}
+                        {{ Form::input('text', 'services[0][offset]', null, ['class' => 'input service_offset', 'id' => '', 'required']) }}
                     </div>
                     <!-- /.form-group -->
                 </div>
@@ -86,14 +86,14 @@
                 <div class="col-3">
                     <div class="form-group">
                         {{ Form::label('services[0][price]', 'Precio', ['class' => 'label']) }}
-                        {{ Form::input('text', 'services[0][price]', null, ['class' => 'input service_price', 'id' => '']) }}
+                        {{ Form::input('text', 'services[0][price]', null, ['class' => 'input service_price', 'id' => '', 'required']) }}
                     </div>
                     <!-- /.form-group -->
                 </div><!-- /.col-3 -->
                 <div class="col-12">
                     <div class="form-group">
                         {{ Form::label('services[0][content]', 'Contenido', ['class' => 'label']) }}
-                        {{ Form::textarea('services[0][content]', null, ['size' => '10x10', 'class' => 'input autosizable service_content', 'id' => '']) }}
+                        {{ Form::textarea('services[0][content]', null, ['size' => '10x10', 'class' => 'input autosizable service_content', 'id' => '', 'required']) }}
                         {{ Form::hidden('services[0][notes]', null, ['class' => 'service_notes']) }}
                     </div>
                     <!-- /.form-group -->
@@ -105,14 +105,14 @@
                     <div class="col-3">
                         <div class="form-group">
                             {{ Form::label('services['.$key.'][title]', 'Título del servicio', ['class' => 'label']) }}
-                            {{ Form::select('services['.$key.'][title]', $services, $service->title, ['class' => 'select2-add service_title', 'id' => '', 'data-placeholder' => 'Selecciona un servicio']) }}
+                            {{ Form::select('services['.$key.'][title]', $services, $service->title, ['class' => 'select2-add service_title', 'id' => '', 'data-placeholder' => 'Selecciona un servicio', 'required']) }}
                         </div>
                         <!-- /.form-group -->
                     </div><!-- /.col-3 -->
                     <div class="col-3">
                         <div class="form-group">
                             {{ Form::label('services['.$key.'][duration]', 'Duración (días)', ['class' => 'label']) }}
-                            {{ Form::input('text', 'services['.$key.'][duration]', $service->duration, ['class' => 'input service_duration', 'id' => '']) }}
+                            {{ Form::input('text', 'services['.$key.'][duration]', $service->duration, ['class' => 'input service_duration', 'id' => '', 'required']) }}
                         </div>
                         <!-- /.form-group -->
                     </div>
@@ -120,7 +120,7 @@
                     <div class="col-3">
                         <div class="form-group">
                             {{ Form::label('services['.$key.'][offset]', 'Inicio', ['class' => 'label']) }}
-                            {{ Form::input('text', 'services['.$key.'][offset]', $service->offset, ['class' => 'input service_offset', 'id' => '']) }}
+                            {{ Form::input('text', 'services['.$key.'][offset]', $service->offset, ['class' => 'input service_offset', 'id' => '', 'required']) }}
                         </div>
                         <!-- /.form-group -->
                     </div>
@@ -128,14 +128,14 @@
                     <div class="col-3">
                         <div class="form-group">
                             {{ Form::label('services['.$key.'][price]', 'Precio', ['class' => 'label']) }}
-                            {{ Form::input('text', 'services['.$key.'][price]', $service->price, ['class' => 'input service_price', 'id' => '']) }}
+                            {{ Form::input('text', 'services['.$key.'][price]', $service->price, ['class' => 'input service_price', 'id' => '', 'required']) }}
                         </div>
                         <!-- /.form-group -->
                     </div><!-- /.col-3 -->
                     <div class="col-12">
                         <div class="form-group">
                             {{ Form::label('services['.$key.'][content]', 'Contenido', ['class' => 'label']) }}
-                            {{ Form::textarea('services['.$key.'][content]', $service->content, ['size' => '10x10', 'class' => 'input autosizable service_content', 'id' => '']) }}
+                            {{ Form::textarea('services['.$key.'][content]', $service->content, ['size' => '10x10', 'class' => 'input autosizable service_content', 'id' => '', 'required']) }}
                             {{ Form::hidden('services['.$key.'][notes]', $service->notes, ['class' => 'service_notes']) }}
                         </div>
                         <!-- /.form-group -->
