@@ -88,7 +88,6 @@ body {
 #estimate > .content .service_list .service {
   margin-bottom: 1rem;
   padding-top: 3rem;
-  page-break-after: always;
 }
 
 #estimate > .content .service_list .service .title {
@@ -103,6 +102,57 @@ body {
 
 #estimate > .content .service_list .service ul li {
   margin-bottom: .5rem;
+  position: relative;
+}
+
+#estimate > .content .service_list .service ul li:before {
+  content: '';
+  position: absolute;
+  background: #ccc;
+  width: 1rem;
+  height: 1px;
+  top: .6rem;
+  left: -2.3rem;
+}
+
+#estimate > .content .service_list .service ul li:after {
+  content: '';
+  position: absolute;
+  background: transparent;
+  border-top: 1px solid transparent;
+  border-right: 0;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  width: 10px;
+  height: 25px;
+  border-radius: 0 0 0 3px;
+  top: -1.15rem;
+  left: -2.5rem;
+}
+
+#estimate > .content .service_list .service ul li:first-child:before {
+  content: '';
+  position: absolute;
+  background: #ccc;
+  width: 1.5rem;
+  height: 1px;
+  top: .6rem;
+  left: -2.8rem;
+}
+
+#estimate > .content .service_list .service ul li:first-child:after {
+  content: '';
+  position: absolute;
+  background: transparent;
+  border-top: 1px solid transparent;
+  border-right: 0;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  width: 10px;
+  height: 25px;
+  border-radius: 0 0 0 3px;
+  top: -1.15rem;
+  left: -2.9rem;
 }
 
 #estimate > .content .service_list .service h1 {
@@ -130,6 +180,7 @@ body {
   padding-top: 3rem;
   padding-left: 2rem;
   margin-bottom: 3rem;
+  page-break-before: always;
 }
 
 #estimate .calendar .title {
@@ -171,6 +222,7 @@ body {
 #estimate .calendar .table .service .label {
   background: #EBEBEC;
   padding: .2rem .4rem;
+  width: 12.1428571429rem;
 }
 
 #estimate .calendar .table .service .offset {

@@ -62,6 +62,10 @@
                             </td><!-- /.days -->
                         @endfor
                     </tr>
+                    @php
+                        $count = 1;
+                        $services_count = count($estimate->estimate_services);
+                    @endphp
                     @foreach ($estimate->estimate_services as $service)
                         <tr class="service">
                             <td class="label">{{ $service->title }}</td><!-- /.label -->
@@ -69,7 +73,13 @@
                                 <td class="offset" colspan="{{ $service->offset }}">&nbsp;</td><!-- /.offset -->
                             @endif
                             <td class="duration" colspan="{{ $service->duration }}">&nbsp;</td><!-- /.duration -->
+                            @if($services_count != $count)
+                                <td class="offset" colspan={{ $days - $service->duration }}></td><!-- /.offset -->
+                            @endif
                         </tr>
+                        @php
+                            $count++;
+                        @endphp
                     @endforeach
                 </table><!-- /.table -->
             </div><!-- /.calendar -->

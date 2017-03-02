@@ -22,7 +22,7 @@
 			top: 0;
 			right: 3rem;
 			background: #000;
-			width: 25px;
+			width: 21px;
 			height: 1px;
 		}
 	</style>

@@ -48,7 +48,7 @@ body
             .service
                 margin-bottom: 1rem
                 padding-top: 3rem
-                page-break-after: always //?
+                // page-break-after: always //?
                 .title
                     +font-size(16px)
                 ul
@@ -56,6 +56,50 @@ body
                     padding-left: 3rem
                     li
                         margin-bottom: .5rem
+                        position: relative
+                        &:before
+                            content: ''
+                            position: absolute
+                            background: $gray
+                            width: 1rem
+                            height: 1px
+                            top: .6rem
+                            left: -2.3rem
+                        &:after
+                            content: ''
+                            position: absolute
+                            background: transparent
+                            border-top: 1px solid transparent
+                            border-right: 0
+                            border-bottom: 1px solid $gray
+                            border-left: 1px solid $gray
+                            width: 10px
+                            height: 25px
+                            border-radius: 0 0 0 3px
+                            top: -1.15rem
+                            left: -2.5rem
+                        &:first-child
+                            &:before
+                                content: ''
+                                position: absolute
+                                background: $gray
+                                width: 1.5rem
+                                height: 1px
+                                top: .6rem
+                                left: -2.8rem
+                            &:after
+                                content: ''
+                                position: absolute
+                                background: transparent
+                                border-top: 1px solid transparent
+                                border-right: 0
+                                border-bottom: 1px solid $gray
+                                border-left: 1px solid $gray
+                                width: 10px
+                                height: 25px
+                                border-radius: 0 0 0 3px
+                                top: -1.15rem
+                                left: -2.9rem
                 h1
                     +font-size(16px)
                     font-family: 'Cormorant Garamond', serif
@@ -76,6 +120,7 @@ body
         padding-top: 3rem
         padding-left: 2rem
         margin-bottom: 3rem
+        page-break-before: always
         .title
             position: relative
             display: inline-block
@@ -105,6 +150,7 @@ body
                 .label
                     background: #EBEBEC
                     padding: .2rem .4rem
+                    width: rem(170px)
                 .offset
                     background: #EBF3F7
                 .duration

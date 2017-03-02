@@ -38,7 +38,7 @@
 	    </div><!-- /.logo -->
 	    <div class="info">
 	        <div class="folio">Folio: {{ $estimate->folio }}</div><!-- /.folio -->
-	        <div class="location">Mérida, Yucatán</div><!-- /.location -->
+	        <div class="location">Mérida, Yucatán · {{ \Date::createFromFormat('Y-m-d H:i:s', $estimate->created_at)->format('j \\d\\e F Y') }}</div><!-- /.location -->
 	    </div><!-- /.info -->
 	</header><!-- /.header -->
 </body>
