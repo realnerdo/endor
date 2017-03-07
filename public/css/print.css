@@ -235,7 +235,7 @@ body {
   font-size: 17px;
   font-size: 1.2142857143rem;
   background: #DDDCDC;
-  color: #58595B;
+  font-weight: 700;
   padding: .2rem .4rem;
   width: 7.1428571429rem;
 }
@@ -251,11 +251,19 @@ body {
 }
 
 #estimate .investment .table .price .symbol {
-  color: #B53B45;
+  color: #58595B;
+}
+
+#estimate .investment .table .price .symbol.detail {
+  color: #999999;
 }
 
 #estimate .investment .table .price .qty {
   color: #58595B;
+}
+
+#estimate .investment .table .price .qty.detail {
+  color: #999999;
 }
 
 #estimate .investment .table .price .details {

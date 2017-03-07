@@ -109,8 +109,8 @@
                         <tr>
                             <td class="title">{{ $service->title }}</td><!-- /.title -->
                             <td class="price">
-                                <span class="symbol">$</span>
-                                <span class="qty">{{ number_format((float) $service->price, 2, '.', ',') }}</span>
+                                <span class="symbol detail">$</span>
+                                <span class="qty detail">{{ number_format((float) $service->price, 2, '.', ',') }}</span>
                                 <span class="details">MXN + IVA</span>
                             </td><!-- /.price -->
                         </tr>
