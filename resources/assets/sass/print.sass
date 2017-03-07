@@ -39,7 +39,7 @@ body
             &:before
                 position: absolute
                 content: ''
-                background: #B53B45
+                background: $gray
                 width: .8rem
                 height: 1px
                 bottom: -.4rem
@@ -57,49 +57,6 @@ body
                     li
                         margin-bottom: .5rem
                         position: relative
-                        &:before
-                            content: ''
-                            position: absolute
-                            background: $gray
-                            width: 1rem
-                            height: 1px
-                            top: .6rem
-                            left: -2.3rem
-                        &:after
-                            content: ''
-                            position: absolute
-                            background: transparent
-                            border-top: 1px solid transparent
-                            border-right: 0
-                            border-bottom: 1px solid $gray
-                            border-left: 1px solid $gray
-                            width: 10px
-                            height: 25px
-                            border-radius: 0 0 0 3px
-                            top: -1.15rem
-                            left: -2.5rem
-                        &:first-child
-                            &:before
-                                content: ''
-                                position: absolute
-                                background: $gray
-                                width: 1.5rem
-                                height: 1px
-                                top: .6rem
-                                left: -2.8rem
-                            &:after
-                                content: ''
-                                position: absolute
-                                background: transparent
-                                border-top: 1px solid transparent
-                                border-right: 0
-                                border-bottom: 1px solid $gray
-                                border-left: 1px solid $gray
-                                width: 10px
-                                height: 25px
-                                border-radius: 0 0 0 3px
-                                top: -1.15rem
-                                left: -2.9rem
                 h1
                     +font-size(16px)
                     font-family: 'Cormorant Garamond', serif
@@ -107,15 +64,7 @@ body
                     margin-top: 1rem
                     margin-bottom: 1rem
                     position: relative
-                    padding-left: .8rem
-                    &:before
-                        content: ''
-                        position: absolute
-                        left: 0
-                        top: .35rem
-                        width: rem(10px)
-                        height: rem(10px)
-                        background: url(../img/bullet.svg) no-repeat
+                    padding-left: .5rem
     .calendar
         padding-top: 3rem
         padding-left: 2rem
@@ -128,7 +77,7 @@ body
             &:before
                 position: absolute
                 content: ''
-                background: #B53B45
+                background: $gray
                 width: .8rem
                 height: 1px
                 bottom: -.4rem
@@ -152,9 +101,9 @@ body
                     padding: .2rem .4rem
                     width: rem(170px)
                 .offset
-                    background: #EBF3F7
+                    background: #F5F5F5
                 .duration
-                    background: #B2BDC4
+                    background: #666666
             .days
                 background: $gray
                 text-align: center
@@ -172,7 +121,7 @@ body
             &:before
                 position: absolute
                 content: ''
-                background: #B53B45
+                background: $gray
                 width: .8rem
                 height: 1px
                 bottom: -.4rem
@@ -225,7 +174,7 @@ body
             &:before
                 position: absolute
                 content: ''
-                background: #B53B45
+                background: $gray
                 width: .8rem
                 height: 1px
                 bottom: -.4rem
@@ -245,7 +194,7 @@ body
             &:before
                 position: absolute
                 content: ''
-                background: #B53B45
+                background: $gray
                 width: .8rem
                 height: 1px
                 bottom: -.4rem
@@ -260,7 +209,7 @@ body
             &:before
                 position: absolute
                 content: ''
-                background: #B53B45
+                background: $gray
                 width: .8rem
                 height: 1px
                 bottom: -.4rem
@@ -269,10 +218,8 @@ body
         padding-bottom: 2rem
         .signatures
             +clear
-            padding-top: 5rem
             width: 100%
-            .employee,
-            .client
+            .person
                 float: left
                 width: 50%
                 text-align: center
@@ -280,12 +227,22 @@ body
                 +font-size(16px)
                 font-family: 'Cormorant Garamond', serif
                 font-weight: 700
-                &:before
-                    position: absolute
-                    content: ''
-                    height: 1px
-                    width: rem(200px)
-                    background: $black
-                    top: -.5rem
-                    left: 50%
-                    transform: translateX(-50%)
+                &.client
+                    padding-top: rem(150px)
+                .signature
+                    width: 100%
+                    text-align: center
+                    .img
+                        width: rem(200px)
+                .name
+                    display: inline-block
+                    position: relative
+                    &:before
+                        position: absolute
+                        content: ''
+                        height: 1px
+                        width: rem(200px)
+                        background: $black
+                        top: -.5rem
+                        left: 50%
+                        transform: translateX(-50%)

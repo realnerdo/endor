@@ -78,7 +78,7 @@ body {
 #estimate > .content > .title:before {
   position: absolute;
   content: '';
-  background: #B53B45;
+  background: #ccc;
   width: .8rem;
   height: 1px;
   bottom: -.4rem;
@@ -106,56 +106,6 @@ body {
   position: relative;
 }
 
-#estimate > .content .service_list .service ul li:before {
-  content: '';
-  position: absolute;
-  background: #ccc;
-  width: 1rem;
-  height: 1px;
-  top: .6rem;
-  left: -2.3rem;
-}
-
-#estimate > .content .service_list .service ul li:after {
-  content: '';
-  position: absolute;
-  background: transparent;
-  border-top: 1px solid transparent;
-  border-right: 0;
-  border-bottom: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  width: 10px;
-  height: 25px;
-  border-radius: 0 0 0 3px;
-  top: -1.15rem;
-  left: -2.5rem;
-}
-
-#estimate > .content .service_list .service ul li:first-child:before {
-  content: '';
-  position: absolute;
-  background: #ccc;
-  width: 1.5rem;
-  height: 1px;
-  top: .6rem;
-  left: -2.8rem;
-}
-
-#estimate > .content .service_list .service ul li:first-child:after {
-  content: '';
-  position: absolute;
-  background: transparent;
-  border-top: 1px solid transparent;
-  border-right: 0;
-  border-bottom: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  width: 10px;
-  height: 25px;
-  border-radius: 0 0 0 3px;
-  top: -1.15rem;
-  left: -2.9rem;
-}
-
 #estimate > .content .service_list .service h1 {
   font-size: 16px;
   font-size: 1.1428571429rem;
@@ -164,17 +114,7 @@ body {
   margin-top: 1rem;
   margin-bottom: 1rem;
   position: relative;
-  padding-left: .8rem;
-}
-
-#estimate > .content .service_list .service h1:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: .35rem;
-  width: 0.7142857143rem;
-  height: 0.7142857143rem;
-  background: url(../img/bullet.svg) no-repeat;
+  padding-left: .5rem;
 }
 
 #estimate .calendar {
@@ -193,7 +133,7 @@ body {
 #estimate .calendar .title:before {
   position: absolute;
   content: '';
-  background: #B53B45;
+  background: #ccc;
   width: .8rem;
   height: 1px;
   bottom: -.4rem;
@@ -227,11 +167,11 @@ body {
 }
 
 #estimate .calendar .table .service .offset {
-  background: #EBF3F7;
+  background: #F5F5F5;
 }
 
 #estimate .calendar .table .service .duration {
-  background: #B2BDC4;
+  background: #666666;
 }
 
 #estimate .calendar .table .days {
@@ -259,7 +199,7 @@ body {
 #estimate .investment > .title:before {
   position: absolute;
   content: '';
-  background: #B53B45;
+  background: #ccc;
   width: .8rem;
   height: 1px;
   bottom: -.4rem;
@@ -341,7 +281,7 @@ body {
 #estimate .notes .title:before {
   position: absolute;
   content: '';
-  background: #B53B45;
+  background: #ccc;
   width: .8rem;
   height: 1px;
   bottom: -.4rem;
@@ -371,7 +311,7 @@ body {
 #estimate .bank_details .title:before {
   position: absolute;
   content: '';
-  background: #B53B45;
+  background: #ccc;
   width: .8rem;
   height: 1px;
   bottom: -.4rem;
@@ -392,7 +332,7 @@ body {
 #estimate .address .title:before {
   position: absolute;
   content: '';
-  background: #B53B45;
+  background: #ccc;
   width: .8rem;
   height: 1px;
   bottom: -.4rem;
@@ -407,12 +347,10 @@ body {
   clear: both;
   content: '';
   display: table;
-  padding-top: 5rem;
   width: 100%;
 }
 
-#estimate .footer .signatures .employee,
-#estimate .footer .signatures .client {
+#estimate .footer .signatures .person {
   float: left;
   width: 50%;
   text-align: center;
@@ -423,8 +361,25 @@ body {
   font-weight: 700;
 }
 
-#estimate .footer .signatures .employee:before,
-#estimate .footer .signatures .client:before {
+#estimate .footer .signatures .person.client {
+  padding-top: 10.7142857143rem;
+}
+
+#estimate .footer .signatures .person .signature {
+  width: 100%;
+  text-align: center;
+}
+
+#estimate .footer .signatures .person .signature .img {
+  width: 14.2857142857rem;
+}
+
+#estimate .footer .signatures .person .name {
+  display: inline-block;
+  position: relative;
+}
+
+#estimate .footer .signatures .person .name:before {
   position: absolute;
   content: '';
   height: 1px;

@@ -53,6 +53,14 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        if($request->hasFile('signature')){
+            $url = $request->file('signature')->store('public/signatures');
+            $picture = Picture::create([
+                'original_name' => $request->file('signature')->getClientOriginalName(),
+                'url' => str_replace('public/', '', $url)
+            ]);
+            $request->merge(['picture_id' => $picture->id]);
+        }
         $request->merge(['password' => bcrypt($request->input('password'))]);
         $user = User::create($request->all());
         session()->flash('flash_message', 'Se ha agregado el usuario: '.$user->username);
@@ -83,6 +91,14 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        if($request->hasFile('signature')){
+            $url = $request->file('signature')->store('public/signatures');
+            $picture = Picture::create([
+                'original_name' => $request->file('signature')->getClientOriginalName(),
+                'url' => str_replace('public/', '', $url)
+            ]);
+            $request->merge(['picture_id' => $picture->id]);
+        }
         if($request->input('password') == ''){
             $user->update($request->except(['password']));
         }else{

@@ -171,11 +171,16 @@
 
             <footer class="footer">
                 <div class="signatures">
-                    <div class="employee">
-                        {{ $estimate->user->name }}
+                    <div class="employee person">
+                        @if(!is_null($estimate->user->picture))
+                            <div class="signature">
+                                <img src="{{ asset('storage/'.$estimate->user->picture->url) }}" alt="Firma" class="img">
+                            </div><!-- /.signature -->
+                        @endif
+                        <span class="name">{{ $estimate->user->name }}</span>
                     </div><!-- /.employee -->
-                    <div class="client">
-                        {{ $estimate->client->name }}
+                    <div class="client person">
+                        <span class="name">{{ $estimate->client->name }}</span>
                     </div><!-- /.client -->
                 </div><!-- /.signatures -->
             </footer><!-- /.footer -->

@@ -1,4 +1,15 @@
 <div class="form-group">
+    {{ Form::label('signature', 'Firma', ['class' => 'label']) }}
+    @if (isset($user->picture->url))
+        <div class="picture">
+            {{ Html::image(asset('storage/'.$user->picture->url), $user->name, ['class' => 'img']) }}
+        </div>
+        <!-- /.picture -->
+    @endif
+    {{ Form::file('signature', ['class' => 'file']) }}
+</div>
+<!-- /.form-group -->
+<div class="form-group">
     {{ Form::label('name', 'Nombre', ['class' => 'label']) }}
     {{ Form::input('text', 'name', null, ['class' => 'input']) }}
 </div>
