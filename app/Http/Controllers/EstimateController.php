@@ -71,7 +71,8 @@ class EstimateController extends Controller
         $initials = '';
         $names = preg_split("/\s+/", Auth::user()->name);
         foreach ($names as $n) {
-          $initials .= $n[0];
+            $name = iconv('UTF-8', 'ASCII//TRANSLIT', $n);
+            $initials .= $name[0];
         }
         $initials = strtoupper($initials);
 
