@@ -69,7 +69,8 @@ class EstimateController extends Controller
         $folio = (is_null($latest)) ? sprintf('%05d', 1) : sprintf('%05d', substr($latest->folio, 0, 5) + 1);
 
         $initials = '';
-        $names = preg_split("/\s+/", Auth::user()->name);
+        $name = trim(Auth::user()->name);
+        $names = preg_split("/\s+/", $name);
         foreach ($names as $n) {
             $name = iconv('UTF-8', 'ASCII//TRANSLIT', $n);
             $initials .= $name[0];
