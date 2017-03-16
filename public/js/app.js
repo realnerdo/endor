@@ -106,10 +106,11 @@ $(function(){
     // Datepicker
     var dateable = $('.datepicker');
     if(dateable.length){
+        var start = (dateable.hasClass('whenever')) ? null : new Date();
         dateable.datepicker({
             language: 'es-ES',
             format: 'yyyy-mm-dd',
-            startDate: new Date(),
+            startDate: start,
             autoHide: true
         });
     }

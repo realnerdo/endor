@@ -13,8 +13,6 @@ use App\Client;
 use App\Service;
 use App\User;
 use App\Setting;
-use Mail;
-use App\Mail\EstimateGenerated;
 use Auth;
 use Config;
 
@@ -38,8 +36,9 @@ class EstimateController extends Controller
     public function index()
     {
         $estimates = Estimate::latest()->paginate(5);
+        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'No vendida' => 'No vendida'];
         $settings = Setting::first();
-        return view('cotizaciones.index', compact('estimates', 'settings'));
+        return view('cotizaciones.index', compact('estimates', 'statuses', 'settings'));
     }
 
     /**
@@ -53,8 +52,9 @@ class EstimateController extends Controller
         $clients = [''=>''] + $clients->toArray();
         $services = Service::pluck('title', 'title');
         $services = [''=>''] + $services->toArray();
+        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'No vendida' => 'No vendida'];
         $users = User::pluck('name', 'id');
-        return view('cotizaciones.create', compact('clients', 'services', 'users'));
+        return view('cotizaciones.create', compact('clients', 'services', 'statuses', 'users'));
     }
 
     /**
@@ -116,8 +116,9 @@ class EstimateController extends Controller
         $clients = [''=>''] + $clients->toArray();
         $services = Service::pluck('title', 'title');
         $services = [''=>''] + $services->toArray();
+        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'No vendida' => 'No vendida'];
         $users = User::pluck('name', 'id');
-        return view('cotizaciones.edit', compact('estimate', 'clients', 'services', 'users'));
+        return view('cotizaciones.edit', compact('estimate', 'clients', 'statuses', 'services', 'users'));
     }
 
     /**

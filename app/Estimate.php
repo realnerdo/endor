@@ -18,6 +18,7 @@ class Estimate extends Model
     protected $fillable = [
         'folio',
         'service',
+        'status',
         'description',
         'total',
         'discount',

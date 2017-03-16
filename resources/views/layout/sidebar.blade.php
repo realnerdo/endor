@@ -13,7 +13,8 @@
             '/' => ['icon' => 'home', 'name' => 'Inicio'],
             'cotizaciones' => ['icon' => 'clipboard', 'name' => 'Cotizaciones'],
             'clientes' => ['icon' => 'group', 'name' => 'Clientes'],
-            'servicios' => ['icon' => 'clipboard', 'name' => 'Servicios']
+            'servicios' => ['icon' => 'clipboard', 'name' => 'Servicios'],
+            'reportes' => ['icon' => 'chart-pie', 'name' => 'Reportes']
         ];
 
         $admin_options = [

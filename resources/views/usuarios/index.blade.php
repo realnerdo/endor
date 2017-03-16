@@ -10,37 +10,6 @@
 @endsection
 
 @section('content')
-    @unless ($users->isEmpty())
-        {{-- <div class="row">
-            {{ Form::open(['url' => '/', 'class' => 'form']) }}
-                <div class="col-4">
-                    <div class="form-group">
-                        {{ Form::label('name', 'Nombre', ['class' => 'label']) }}
-                        {{ Form::input('text', 'name', null, ['class' => 'input']) }}
-                    </div>
-                    <!-- /.form-group -->
-                </div>
-                <!-- /.col-4 -->
-                <div class="col-4">
-                    <div class="form-group">
-                        {{ Form::label('username', 'Usuario', ['class' => 'label']) }}
-                        {{ Form::input('text', 'username', null, ['class' => 'input']) }}
-                    </div>
-                    <!-- /.form-group -->
-                </div>
-                <!-- /.col-4 -->
-                <div class="col-4">
-                    <div class="form-group">
-                        {{ Form::label('email', 'Correo electrónico', ['class' => 'label']) }}
-                        {{ Form::input('text', 'email', null, ['class' => 'input']) }}
-                    </div>
-                    <!-- /.form-group -->
-                </div>
-                <!-- /.col-4 -->
-            {{ Form::close() }}
-        </div>
-        <!-- /.row --> --}}
-    @endunless
     <div class="row">
         <div class="col-12">
             @if ($users->isEmpty())
@@ -66,7 +35,7 @@
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <td data-th="Nombre">{{ $user->name }} {!! ($user->role == 'admin') ? '<span class="badge badge-blue">Administrador</span>' : '<span class="badge badge-blue">Vendedor</span>' !!}</td>
+                                <td data-th="Nombre">{{ $user->name }} {!! ($user->role == 'admin') ? '<span class="badge badge-blue">Administrador</span>' : '<span class="badge badge-blue">Empleado</span>' !!}</td>
                                 <td data-th="Usuario">{{ $user->username }}</td>
                                 <td data-th="Correo electrónico"><a href="mailto:{{ $user->email }}" class="link">{{ $user->email }}</a></td>
                                 <td data-th="Registro">{{ ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $user->created_at)->diffForHumans()) }}</td>

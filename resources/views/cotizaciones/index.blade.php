@@ -29,18 +29,35 @@
                             <th>Cliente</th>
                             <th>Empleado</th>
                             <th>Servicio</th>
+                            <th>Estado</th>
                             <th>Total</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($estimates as $estimate)
+                            @php
+                                switch ($estimate->status) {
+                                    case 'En espera':
+                                        $badge_color = 'yellow';
+                                        break;
+                                    case 'Vendida':
+                                        $badge_color = 'green';
+                                        break;
+                                    case 'No vendida':
+                                        $badge_color = 'red';
+                                        break;
+                                }
+                            @endphp
                             <tr>
                                 <td data-th="Folio">{{ $estimate->folio }}</td>
                                 <td data-th="Fecha">{{ ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $estimate->created_at)->diffForHumans()) }}</td>
                                 <td data-th="Cliente">{{ $estimate->client->name }}</td>
                                 <td data-th="Empleado">{{ $estimate->user->name }}</td>
                                 <td data-th="Servicio">{{ $estimate->service }}</td>
+                                <td data-th="Estado">
+                                    <span class="badge badge-{{ $badge_color }}">{{ $estimate->status }}</span>
+                                </td>
                                 <td data-th="Total"><span class="price">${{ number_format((float) $estimate->total, 2, '.', ',') }}</span></td>
                                 <td data-th="Opciones">
                                     <span href="#" class="dropdown">

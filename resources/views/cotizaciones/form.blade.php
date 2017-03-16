@@ -31,24 +31,30 @@
         <!-- /.form-group -->
     </div>
     <!-- /.col-3 -->
-    <div class="col-6">
+    <div class="col-3">
         <div class="form-group">
             {{ Form::label('description', 'Descripción', ['class' => 'label']) }}
             {{ Form::textarea('description', null, ['size' => '10x3', 'class' => 'input autosizable', 'required']) }}
         </div>
         <!-- /.form-group -->
     </div>
-    <!-- /.col-6 -->
+    <!-- /.col-3 -->
     <div class="col-3">
         <div class="form-group">
-            {{ Form::label('total', 'Total (Se calcula automáticamente)', ['class' => 'label']) }}
-            {{ Form::input('text', 'total', null, ['class' => 'input', 'required', 'readonly']) }}
+            {{ Form::label('status', 'Estado', ['class' => 'label']) }}
+            {{ Form::select('status', $statuses, null, ['class' => 'select2', 'data-placeholder' => 'Estado']) }}
         </div><!-- /.form-group -->
     </div><!-- /.col-3 -->
     <div class="col-3">
         <div class="form-group">
             {{ Form::label('discount', 'Con descuento', ['class' => 'label']) }}
             {{ Form::input('text', 'discount', null, ['class' => 'input', 'required']) }}
+        </div><!-- /.form-group -->
+    </div><!-- /.col-3 -->
+    <div class="col-3">
+        <div class="form-group">
+            {{ Form::label('total', 'Total (Se calcula automáticamente)', ['class' => 'label']) }}
+            {{ Form::input('text', 'total', null, ['class' => 'input', 'required', 'readonly']) }}
         </div><!-- /.form-group -->
     </div><!-- /.col-3 -->
 </div>

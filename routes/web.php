@@ -63,9 +63,4 @@ Route::patch('ajustes/{setting}', 'SettingController@update');
 
 // Reportes
 Route::get('reportes', 'ReportController@index');
-Route::get('reportes/exportMostEstimatedDetails', 'ReportController@exportMostEstimatedDetails');
-Route::get('reportes/exportMostEstimatedCategories', 'ReportController@exportMostEstimatedCategories');
-Route::get('reportes/exportEstimatesByUser', 'ReportController@exportEstimatesByUser');
-
-// Emails
-Route::get('emails', 'EmailController@index');
+Route::get('reportes/exportExcel', 'ReportController@exportExcel');
