@@ -61,7 +61,7 @@
 	<div class="row">
 		@unless($estimates->isEmpty())
 			@if($values == '')
-				<div class="col-12">Mostrando todas las cotizaciones</div><!-- /.col-12 -->
+				<div class="col-12">Mostrando todas las cotizaciones. Total: {{ $estimates->count() }}</div><!-- /.col-12 -->
 			@else
 				@php
 					$showing = '';
@@ -80,7 +80,7 @@
 					if($request->has('status'))
 						$showing .= ' con el estado <b>"' . $request->input('status') . '"</b>';
 				@endphp
-				<div class="col-12">Mostrando resultados {!! $showing !!}.</div><!-- /.col-12 -->
+				<div class="col-12">Mostrando {{ $estimates->count() }} resultados {!! $showing !!}.</div><!-- /.col-12 -->
 			@endif
 		@endunless
 	</div><!-- /.row -->
