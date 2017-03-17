@@ -121,6 +121,24 @@ $(function(){
         autosize(autosizable);
     }
 
+    // Change status
+    var change_status_form = $('.change-status-form');
+    if(change_status_form.length){
+        $body.on('change', '.change-status', function(){
+            var $this = $(this),
+                status = $this.val(),
+                form = $this.closest('.change-status-form'),
+                data = form.serialize(),
+                action = form.attr('action');
+
+            $.post(action, data, function(result){
+                if(result == 'success'){
+                    location.reload();
+                }
+            });
+        });
+    }
+
     // Cotizador
     var select_client_id = $('#client_id');
     if(select_client_id.length){

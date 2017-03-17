@@ -204,6 +204,13 @@ class EstimateController extends Controller
         return redirect('cotizaciones');
     }
 
+    public function changeStatus(Request $request, Estimate $estimate)
+    {
+        $estimate->update($request->all());
+        session()->flash('flash_message', 'Se ha actualizado el estatus de la cotización: "'.$estimate->folio.'" a "'.$estimate->status.'"');
+        return 'success';
+    }
+
     /**
      * Remove the specified resource from storage.
      *

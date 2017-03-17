@@ -36,19 +36,6 @@
                     </thead>
                     <tbody>
                         @foreach ($estimates as $estimate)
-                            @php
-                                switch ($estimate->status) {
-                                    case 'En espera':
-                                        $badge_color = 'yellow';
-                                        break;
-                                    case 'Vendida':
-                                        $badge_color = 'green';
-                                        break;
-                                    case 'No vendida':
-                                        $badge_color = 'red';
-                                        break;
-                                }
-                            @endphp
                             <tr>
                                 <td data-th="Folio">{{ $estimate->folio }}</td>
                                 <td data-th="Fecha">{{ ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $estimate->created_at)->diffForHumans()) }}</td>
@@ -56,7 +43,9 @@
                                 <td data-th="Empleado">{{ $estimate->user->name }}</td>
                                 <td data-th="Servicio">{{ $estimate->service }}</td>
                                 <td data-th="Estatus">
-                                    <span class="badge badge-{{ $badge_color }}">{{ $estimate->status }}</span>
+                                    {{ Form::open(['url' => 'cotizaciones/' . $estimate->id . '/changeStatus', 'class' => 'change-status-form']) }}
+                                        {{ Form::select('status', $statuses, $estimate->status, ['class' => 'select2 change-status', 'data-placeholder' => 'Cambiar estatus']) }}
+                                    {{ Form::close() }}
                                 </td>
                                 <td data-th="Total"><span class="price">${{ number_format((float) $estimate->total, 2, '.', ',') }}</span></td>
                                 <td data-th="Opciones">

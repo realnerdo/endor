@@ -25,9 +25,7 @@ Route::get('cotizaciones/{estimate}/editar', 'EstimateController@edit');
 Route::get('cotizaciones/{estimate}/download', 'EstimateController@download');
 Route::get('cotizaciones/{estimate}/pdf', 'EstimateController@pdf');
 Route::post('cotizaciones/{estimate}/email', 'EstimateController@email');
-Route::get('cotizaciones/pdf/header', function(){
-	return view('cotizaciones.header');
-});
+Route::post('cotizaciones/{estimate}/changeStatus', 'EstimateController@changeStatus');
 
 // Clientes
 Route::get('clientes', 'ClientController@index');
