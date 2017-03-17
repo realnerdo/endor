@@ -57,7 +57,7 @@ class ReportController extends Controller
     	if($request->has('user_id'))
     		$showing .= ' del empleado "' . $first->user->name . '"';
     	if($request->has('service_title')){
-    		$service = \App\Service::find($request->input('service_title'));
+    		$service = Service::where('title', $request->input('service_title'))->first();
     		if($service)
     			$showing .= ' del servicio "' . $service->title . '"';
     	}

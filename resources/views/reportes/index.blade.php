@@ -72,8 +72,8 @@
 						$showing .= ' del cliente <b>"' . $first->client->name . '"</b>';
 					if($request->has('user_id'))
 						$showing .= ' del empleado <b>"' . $first->user->name . '"</b>';
-					if($request->has('service_id')){
-						$service = \App\Service::find($request->input('service_id'));
+					if($request->has('service_title')){
+						$service = \App\Service::where('title', $request->input('service_title'))->first();
 						if($service)
 							$showing .= ' del servicio <b>"' . $service->title . '"</b>';
 					}
