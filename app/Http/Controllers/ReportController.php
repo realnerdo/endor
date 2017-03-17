@@ -39,7 +39,7 @@ class ReportController extends Controller
         $clients = [0 => 'Todos'] + $clients->toArray();
         $users = User::pluck('name', 'id');
         $users = [0 => 'Todos'] + $users->toArray();
-        $services = Service::pluck('title', 'id');
+        $services = Service::pluck('title', 'title');
         $services = [0 => 'Todos'] + $services->toArray();
         $statuses = [0 => 'Todos', 'En espera' => 'En espera', 'Vendida' => 'Vendida', 'No vendida' => 'No vendida'];
         return view('reportes.index', compact('request', 'values', 'estimates', 'clients', 'users', 'services', 'statuses'));
@@ -56,13 +56,13 @@ class ReportController extends Controller
     		$showing .= ' del cliente "' . $first->client->name . '"';
     	if($request->has('user_id'))
     		$showing .= ' del empleado "' . $first->user->name . '"';
-    	if($request->has('service_id')){
-    		$service = \App\Service::find($request->input('service_id'));
+    	if($request->has('service_title')){
+    		$service = \App\Service::find($request->input('service_title'));
     		if($service)
     			$showing .= ' del servicio "' . $service->title . '"';
     	}
         if($request->has('status'))
-            $showing .= ' con el estado "' . $request->input('status') . '"';
+            $showing .= ' con el estatus "' . $request->input('status') . '"';
     	if(!$estimates->isEmpty()){
     		$total = ($estimates->count() > 1) ? 'Mostrando ' . $estimates->count() . ' cotizaciones' : 'Mostrando ' . $estimates->count() . ' cotización';
     		$title = 'Reporte de cotizaciones';
@@ -74,7 +74,7 @@ class ReportController extends Controller
     				'Cliente' => $estimate->client->name,
     				'Empleado' => $estimate->user->name,
     				'Servicio' => $estimate->service,
-    				'Estado' => $estimate->status,
+    				'Estatus' => $estimate->status,
     				'Total' => $estimate->total
     			];
     		}
@@ -116,9 +116,9 @@ class ReportController extends Controller
     	        $estimates = $estimates->where('user_id', $request->input('user_id'));
             if($request->has('status') && $request->input('status') != '')
                 $estimates = $estimates->where('status', $request->input('status'));
-    	    if($request->has('service_id') && $request->input('service_id') != ''){
+    	    if($request->has('service_title') && $request->input('service_title') != ''){
     	    	$estimates = $estimates->whereHas('estimate_services', function($query) use($request){
-    	    		$query->where('id', $request->input('service_id'));
+    	    		$query->where('title', $request->input('service_title'));
     	    	});
     	    }
     	    $estimates = $estimates->paginate(5);

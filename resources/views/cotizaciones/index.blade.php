@@ -29,7 +29,7 @@
                             <th>Cliente</th>
                             <th>Empleado</th>
                             <th>Servicio</th>
-                            <th>Estado</th>
+                            <th>Estatus</th>
                             <th>Total</th>
                             <th>Opciones</th>
                         </tr>
@@ -55,7 +55,7 @@
                                 <td data-th="Cliente">{{ $estimate->client->name }}</td>
                                 <td data-th="Empleado">{{ $estimate->user->name }}</td>
                                 <td data-th="Servicio">{{ $estimate->service }}</td>
-                                <td data-th="Estado">
+                                <td data-th="Estatus">
                                     <span class="badge badge-{{ $badge_color }}">{{ $estimate->status }}</span>
                                 </td>
                                 <td data-th="Total"><span class="price">${{ number_format((float) $estimate->total, 2, '.', ',') }}</span></td>

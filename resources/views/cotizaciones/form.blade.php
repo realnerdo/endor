@@ -41,8 +41,8 @@
     <!-- /.col-3 -->
     <div class="col-3">
         <div class="form-group">
-            {{ Form::label('status', 'Estado', ['class' => 'label']) }}
-            {{ Form::select('status', $statuses, null, ['class' => 'select2', 'data-placeholder' => 'Estado']) }}
+            {{ Form::label('status', 'Estatus', ['class' => 'label']) }}
+            {{ Form::select('status', $statuses, null, ['class' => 'select2', 'data-placeholder' => 'Estatus']) }}
         </div><!-- /.form-group -->
     </div><!-- /.col-3 -->
     <div class="col-3">

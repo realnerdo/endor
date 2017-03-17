@@ -40,14 +40,14 @@
 			</div><!-- /.col-3 -->
 			<div class="col-3">
 				<div class="form-group">
-					{{ Form::label('service_id', 'Servicio', ['class' => 'label']) }}
-					{{ Form::select('service_id', $services, ($request->has('service_id')) ? $request->input('service_id') : null, ['class' => 'select2', 'data-placeholder' => 'Servicio']) }}
+					{{ Form::label('service_title', 'Servicio', ['class' => 'label']) }}
+					{{ Form::select('service_title', $services, ($request->has('service_title')) ? $request->input('service_title') : null, ['class' => 'select2', 'data-placeholder' => 'Servicio']) }}
 				</div><!-- /.form-group -->
 			</div><!-- /.col-3 -->
 			<div class="col-3">
 				<div class="form-group">
-					{{ Form::label('status', 'Estado', ['class' => 'label']) }}
-					{{ Form::select('status', $statuses, ($request->has('status')) ? $request->input('status') : null, ['class' => 'select2', 'data-placeholder' => 'Estado']) }}
+					{{ Form::label('status', 'Estatus', ['class' => 'label']) }}
+					{{ Form::select('status', $statuses, ($request->has('status')) ? $request->input('status') : null, ['class' => 'select2', 'data-placeholder' => 'Estatus']) }}
 				</div><!-- /.form-group -->
 			</div><!-- /.col-3 -->
 			<div class="col-6">
@@ -78,7 +78,7 @@
 							$showing .= ' del servicio <b>"' . $service->title . '"</b>';
 					}
 					if($request->has('status'))
-						$showing .= ' con el estado <b>"' . $request->input('status') . '"</b>';
+						$showing .= ' con el estatus <b>"' . $request->input('status') . '"</b>';
 				@endphp
 				<div class="col-12">Mostrando {{ $estimates->count() }} resultados {!! $showing !!}.</div><!-- /.col-12 -->
 			@endif
@@ -100,7 +100,7 @@
 				            <th>Cliente</th>
 				            <th>Empleado</th>
 				            <th>Servicio</th>
-				            <th>Estado</th>
+				            <th>Estatus</th>
 				            <th>Total</th>
 				        </tr>
 				    </thead>
@@ -125,7 +125,7 @@
 				                <td data-th="Cliente">{{ $estimate->client->name }}</td>
 				                <td data-th="Empleado">{{ $estimate->user->name }}</td>
 				                <td data-th="Servicio">{{ $estimate->service }}</td>
-				                <td data-th="Estado">
+				                <td data-th="Estatus">
 				                	<span class="badge badge-{{ $badge_color }}">{{ $estimate->status }}</span>
 				                </td>
 				                <td data-th="Total"><span class="price">${{ number_format((float) $estimate->total, 2, '.', ',') }}</span></td>
