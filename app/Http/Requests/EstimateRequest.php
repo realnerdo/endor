@@ -27,8 +27,8 @@ class EstimateRequest extends FormRequest
             'client_id' => 'required',
             'email' => 'email',
             'phone' => 'numeric',
-            'discount' => 'required',
             'service' => 'required',
+            'payment_type' => 'required',
             'services' => 'required'
         ];
     }
@@ -44,8 +44,8 @@ class EstimateRequest extends FormRequest
             'client_id.required' => 'No has seleccionado un cliente',
             'email.email' => 'No has escrito un correo electrónico válido',
             'phone.numeric' => 'No has escrito un número de teléfono válido',
-            'discount.required' => 'No has escrito un precio con descuento',
-            'service' => 'No has escrito un servicio',
+            'service.required' => 'No has escrito un servicio',
+            'payment_type.required' => 'No has seleccionado un tipo de inversión',
             'services' => 'No has seleccionado ningún servicio'
         ];
     }

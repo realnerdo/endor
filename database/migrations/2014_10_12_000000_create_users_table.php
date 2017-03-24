@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('picture_id')->unsigned()->nullable();
-            $table->enum('role', ['admin', 'employee'])->default('employee');
+            $table->enum('role', ['admin', 'executive'])->default('executive');
             $table->rememberToken();
             $table->timestamps();
 

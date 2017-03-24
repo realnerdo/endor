@@ -16,7 +16,8 @@ class CreateEstimatesTable extends Migration
         Schema::create('estimates', function(Blueprint $table) {
             $table->increments('id');
             $table->string('folio');
-            $table->enum('status', ['En espera', 'Vendida', 'No vendida'])->default('En espera');
+            $table->enum('status', ['En espera', 'Vendida', 'Vendida con descuento', 'No vendida'])->default('En espera');
+            $table->enum('payment_type', ['Normal', 'Mensual'])->default('Normal');
             $table->string('service');
             $table->text('description');
             $table->float('total')->nullable();

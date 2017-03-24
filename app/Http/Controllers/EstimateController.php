@@ -36,7 +36,7 @@ class EstimateController extends Controller
     public function index()
     {
         $estimates = Estimate::latest()->paginate(5);
-        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'No vendida' => 'No vendida'];
+        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento' => 'Vendida con descuento', 'No vendida' => 'No vendida'];
         $settings = Setting::first();
         return view('cotizaciones.index', compact('estimates', 'statuses', 'settings'));
     }
@@ -48,13 +48,15 @@ class EstimateController extends Controller
      */
     public function create()
     {
+        $setting = Setting::latest()->first();
         $clients = Client::pluck('name', 'id');
         $clients = [''=>''] + $clients->toArray();
         $services = Service::pluck('title', 'title');
         $services = [''=>''] + $services->toArray();
-        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'No vendida' => 'No vendida'];
+        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento', 'No vendida' => 'No vendida'];
+        $payment_types = ['Normal' => 'Normal', 'Mensual' => 'Mensual'];
         $users = User::pluck('name', 'id');
-        return view('cotizaciones.create', compact('clients', 'services', 'statuses', 'users'));
+        return view('cotizaciones.create', compact('clients', 'services', 'statuses', 'payment_types', 'users', 'setting'));
     }
 
     /**
@@ -116,9 +118,10 @@ class EstimateController extends Controller
         $clients = [''=>''] + $clients->toArray();
         $services = Service::pluck('title', 'title');
         $services = [''=>''] + $services->toArray();
-        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'No vendida' => 'No vendida'];
+        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento', 'No vendida' => 'No vendida'];
+        $payment_types = ['Normal' => 'Normal', 'Mensual' => 'Mensual'];
         $users = User::pluck('name', 'id');
-        return view('cotizaciones.edit', compact('estimate', 'clients', 'statuses', 'services', 'users'));
+        return view('cotizaciones.edit', compact('estimate', 'clients', 'statuses', 'payment_types', 'services', 'users'));
     }
 
     /**
@@ -187,6 +190,9 @@ class EstimateController extends Controller
             $client = Client::create($request->all());
             $request->merge(['client_id' => $client->id]);
         }
+
+        if(!$request->has('discount'))
+            $request->merge(['discount' => null]);
 
         $estimate->update($request->all());
 

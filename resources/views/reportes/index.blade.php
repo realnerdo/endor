@@ -17,13 +17,13 @@
 			<div class="col-3">
 				<div class="form-group">
 					{{ Form::label('from', 'Desde', ['class' => 'label']) }}
-					{{ Form::input('text', 'from', ($request->has('from')) ? $request->input('from') : null, ['class' => 'input datepicker whenever', 'required']) }}
+					{{ Form::input('text', 'from', ($request->has('from')) ? $request->input('from') : null, ['class' => 'input datepicker whenever']) }}
 				</div><!-- /.form-group -->
 			</div><!-- /.col-3 -->
 			<div class="col-3">
 				<div class="form-group">
 					{{ Form::label('to', 'Hasta', ['class' => 'label']) }}
-					{{ Form::input('text', 'to', ($request->has('to')) ? $request->input('to') : null, ['class' => 'input datepicker whenever', 'required']) }}
+					{{ Form::input('text', 'to', ($request->has('to')) ? $request->input('to') : null, ['class' => 'input datepicker whenever']) }}
 				</div><!-- /.form-group -->
 			</div><!-- /.col-3 -->
 			<div class="col-3">
@@ -34,8 +34,8 @@
 			</div><!-- /.col-3 -->
 			<div class="col-3">
 				<div class="form-group">
-					{{ Form::label('user_id', 'Empleado', ['class' => 'label']) }}
-					{{ Form::select('user_id', $users, ($request->has('user_id')) ? $request->input('user_id') : null, ['class' => 'select2', 'data-placeholder' => 'Empleado']) }}
+					{{ Form::label('user_id', 'Ejecutivo', ['class' => 'label']) }}
+					{{ Form::select('user_id', $users, ($request->has('user_id')) ? $request->input('user_id') : null, ['class' => 'select2', 'data-placeholder' => 'Ejecutivo']) }}
 				</div><!-- /.form-group -->
 			</div><!-- /.col-3 -->
 			<div class="col-3">
@@ -66,12 +66,18 @@
 				@php
 					$showing = '';
 					$first = $estimates->first();
-					if($request->has('from') && $request->has('to'))
-						$showing .= ' desde <b>"' . $request->input('from') . '"</b> hasta <b>"' . $request->input('to') . '"</b>';
+					if($request->has('from'))
+						$showing .= ' desde <b>"' . $request->input('from') . '"</b>';
+					else
+						$showing .= ' desde <b>la primera cotización</b>';
+					if($request->has('to'))
+						$showing .= ' hasta <b>"' . $request->input('to') . '"</b>';
+					else
+						$showing .= ' hasta <b>hoy ("'. \Carbon\Carbon::today()->toDateString() .'")</b>';
 					if($request->has('client_id'))
 						$showing .= ' del cliente <b>"' . $first->client->name . '"</b>';
 					if($request->has('user_id'))
-						$showing .= ' del empleado <b>"' . $first->user->name . '"</b>';
+						$showing .= ' del ejecutivo <b>"' . $first->user->name . '"</b>';
 					if($request->has('service_title')){
 						$service = \App\Service::where('title', $request->input('service_title'))->first();
 						if($service)
@@ -80,7 +86,7 @@
 					if($request->has('status'))
 						$showing .= ' con el estatus <b>"' . $request->input('status') . '"</b>';
 				@endphp
-				<div class="col-12">Mostrando {{ $estimates->count() }} resultados {!! $showing !!}.</div><!-- /.col-12 -->
+				<div class="col-12">Resultados: <b>{{ $estimates->total() }}</b> {!! $showing !!}.</div><!-- /.col-12 -->
 			@endif
 		@endunless
 	</div><!-- /.row -->
@@ -92,13 +98,31 @@
 			        <h2 class="title">No se encontraron cotizaciones</h2><!-- /.title -->
 			    </div><!-- /.empty -->
 			@else
+				<table class="table report-totals">
+                    <thead>
+                        <tr>
+                            <th>Total Vendido</th>
+                            <th>Total No vendido</th>
+                            <th>Total por vender</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-th="Total Vendido"><span class="price">${{ number_format((float) $selled_total, 2, '.', ',') }}</span></td>
+                            <td data-th="Total No vendido"><span class="price">${{ number_format((float) $not_selled_total, 2, '.', ',') }}</span></td>
+                            <td data-th="Total por vender"><span class="price">${{ number_format((float) $pending_total, 2, '.', ',') }}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- /.table -->
+
 				<table class="table">
 				    <thead>
 				        <tr>
 				            <th>Folio</th>
 				            <th>Fecha</th>
 				            <th>Cliente</th>
-				            <th>Empleado</th>
+				            <th>Ejecutivo</th>
 				            <th>Servicio</th>
 				            <th>Estatus</th>
 				            <th>Total</th>
@@ -114,6 +138,9 @@
 				        			case 'Vendida':
 				        				$badge_color = 'green';
 				        				break;
+				        			case 'Vendida con descuento':
+				        				$badge_color = 'green';
+				        				break;
 				        			case 'No vendida':
 				        				$badge_color = 'red';
 				        				break;
@@ -122,13 +149,21 @@
 				            <tr>
 				                <td data-th="Folio">{{ $estimate->folio }}</td>
 				                <td data-th="Fecha">{{ ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $estimate->created_at)->diffForHumans()) }}</td>
-				                <td data-th="Cliente">{{ $estimate->client->name }}</td>
-				                <td data-th="Empleado">{{ $estimate->user->name }}</td>
+				                <td data-th="Cliente">
+									<a href="#" class="modal-trigger link" data-modal="client-modal" data-id="{{ $estimate->client->id }}">{{ $estimate->client->name }}</a>
+								</td>
+				                <td data-th="Ejecutivo">{{ $estimate->user->name }}</td>
 				                <td data-th="Servicio">{{ $estimate->service }}</td>
 				                <td data-th="Estatus">
 				                	<span class="badge badge-{{ $badge_color }}">{{ $estimate->status }}</span>
 				                </td>
-				                <td data-th="Total"><span class="price">${{ number_format((float) $estimate->total, 2, '.', ',') }}</span></td>
+				                <td data-th="Total">
+									@if ($estimate->discount)
+										<span class="price discount"><i class="typcn typcn-tag"></i>${{ number_format((float) $estimate->discount, 2, '.', ',') }}</span>
+	                                    <br>
+									@endif
+                                    <span class="price">${{ number_format((float) $estimate->total, 2, '.', ',') }}</span>
+								</td>
 				            </tr>
 				        @endforeach
 				    </tbody>
@@ -147,4 +182,8 @@
 	    <!-- /.col-12 -->
 	</div>
 	<!-- /.row -->
+@endsection
+
+@section('modal')
+	@include('clientes.modal')
 @endsection

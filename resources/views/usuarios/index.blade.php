@@ -35,7 +35,7 @@
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <td data-th="Nombre">{{ $user->name }} {!! ($user->role == 'admin') ? '<span class="badge badge-blue">Administrador</span>' : '<span class="badge badge-blue">Empleado</span>' !!}</td>
+                                <td data-th="Nombre">{{ $user->name }} {!! ($user->role == 'admin') ? '<span class="badge badge-blue">Admin</span>' : '<span class="badge badge-blue">Ejecutivo</span>' !!}</td>
                                 <td data-th="Usuario">{{ $user->username }}</td>
                                 <td data-th="Correo electrónico"><a href="mailto:{{ $user->email }}" class="link">{{ $user->email }}</a></td>
                                 <td data-th="Registro">{{ ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $user->created_at)->diffForHumans()) }}</td>

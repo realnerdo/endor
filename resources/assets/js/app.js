@@ -54,6 +54,67 @@ $(function(){
         autosize(autosizable);
     }
 
+    // Modal
+    var modal = $('.modal');
+    if(modal.length){
+
+        function show_modal(modal_id, resource_id) {
+            var modal = $('#'+modal_id);
+            if(modal_id == 'client-modal'){
+                $.get(base_url + '/clientes/getClientById/'+resource_id, function(data){
+                    var p_name = $('<p>', {
+                            html: '<b>Nombre:</b> '+data.name
+                        }),
+                        p_phone = $('<p>', {
+                            html: '<b>Teléfono:</b> '+data.phone
+                        }),
+                        p_email = $('<p>', {
+                            html: '<b>Correo electrónico:</b> <a class="link" href="mailto:'+ data.email +'">'+data.email+'</a>'
+                        }),
+                        p_estimates = $('<p>', {
+                            html: '<b>Cotizaciones:</b> <a class="link" href="'+ base_url + '/reportes?client_id='+ data.id +'">'+data.estimates.length+'</a>'
+                        });
+                    var content = modal.find('.content');
+                    content.empty();
+                    content.append(p_name);
+                    content.append(p_phone);
+                    content.append(p_email);
+                    content.append(p_estimates);
+                    console.log(data);
+                    modal.addClass('show');
+                });
+            }
+        }
+
+        function close_modal(){
+            var modal = $('.layer');
+            modal.removeClass('show');
+        }
+
+        $body.on('click', '.modal-trigger', function(){
+            var $this = $(this),
+                modal_id = $this.data('modal'),
+                resource_id = $this.data('id');
+            show_modal(modal_id, resource_id);
+            return false;
+        });
+
+        $body.on('click', '.close-modal', function(){
+            close_modal();
+            return false;
+        });
+
+        $body.on('click', '.layer', function(e){
+            if (e.target == this){
+                close_modal();
+            }
+        });
+
+        $(document).keyup(function(e) {
+          if (e.keyCode === 27) close_modal();
+        });
+    }
+
     // Change status
     var change_status_form = $('.change-status-form');
     if(change_status_form.length){
@@ -87,20 +148,8 @@ $(function(){
             });
         });
 
-        $body.on('change', '.service_title', function(){
-            var $this = $(this),
-                title = $this.val(),
-                textarea_content = $this.closest('.service').find('.service_content'),
-                hidden_notes = $this.closest('.service').find('.service_notes');
-            $.get(base_url+'/servicios/getServiceByTitle/'+title, function(data){
-                textarea_content.val(data.content);
-                hidden_notes.val(data.notes);
-            });
-        });
-
-        $body.on('keyup', '.service_price', function(){
-            var $this = $(this),
-                input_total = $('#total'),
+        function calculate_total(){
+            var input_total = $('#total'),
                 input_prices = $('.service_price'),
                 total = 0;
 
@@ -112,6 +161,34 @@ $(function(){
             });
 
             input_total.val(total);
+        }
+
+        $body.on('change', '.service_title', function(){
+            var $this = $(this),
+                title = $this.val(),
+                input_price = $this.closest('.service').find('.service_price'),
+                textarea_content = $this.closest('.service').find('.service_content'),
+                hidden_notes = $this.closest('.service').find('.service_notes');
+            $.get(base_url+'/servicios/getServiceByTitle/'+title, function(data){
+                input_price.val(data.price);
+                textarea_content.val(data.content);
+                hidden_notes.val(data.notes);
+                calculate_total();
+            });
+        });
+
+        $body.on('keyup', '.service_price', function(){
+            calculate_total();
+        });
+
+        $body.on('change', '#with_discount', function(){
+            var input_discount = $('#discount');
+            if($(this).prop('checked')){
+                input_discount.prop('disabled', false);
+            }else{
+                input_discount.prop('disabled', true);
+                input_discount.val('');
+            }
         });
 
         function add_service_form(){

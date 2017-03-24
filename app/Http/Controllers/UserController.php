@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         $roles = [
             'admin' => 'Administrador',
-            'employee' => 'Empleado'
+            'executive' => 'Ejecutivo'
         ];
         return view('usuarios.create', compact('roles'));
     }
@@ -77,7 +77,7 @@ class UserController extends Controller
     {
         $roles = [
             'admin' => 'Administrador',
-            'employee' => 'Empleado'
+            'executive' => 'Ejecutivo'
         ];
         return view('usuarios.edit', compact('user', 'roles'));
     }

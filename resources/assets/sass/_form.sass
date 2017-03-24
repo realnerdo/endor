@@ -18,6 +18,8 @@
         .label
             display: block
             margin-bottom: .5rem
+            &.inline
+                display: inline-block
         .input
             +font-size(16px)
             background: $white
@@ -28,7 +30,8 @@
             padding: .5rem
             resize: none
             width: 100%
-            &[readonly]
+            &[readonly],
+            &[disabled]
                 background: $cloud
                 cursor: not-allowed
         .select2-container

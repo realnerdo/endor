@@ -17,6 +17,7 @@ class Setting extends Model
         'phone',
         'address',
         'bank_details',
+        'estimate_description',
         'logo_id'
     ];
 

@@ -27,7 +27,7 @@
                             <th>Folio</th>
                             <th>Fecha</th>
                             <th>Cliente</th>
-                            <th>Empleado</th>
+                            <th>Ejecutivo</th>
                             <th>Servicio</th>
                             <th>Estatus</th>
                             <th>Total</th>
@@ -39,15 +39,32 @@
                             <tr>
                                 <td data-th="Folio">{{ $estimate->folio }}</td>
                                 <td data-th="Fecha">{{ ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $estimate->created_at)->diffForHumans()) }}</td>
-                                <td data-th="Cliente">{{ $estimate->client->name }}</td>
-                                <td data-th="Empleado">{{ $estimate->user->name }}</td>
+                                <td data-th="Cliente">
+                                    <a href="#" class="modal-trigger link" data-modal="client-modal" data-id="{{ $estimate->client->id }}">{{ $estimate->client->name }}</a>
+                                </td>
+                                <td data-th="Ejecutivo">{{ $estimate->user->name }}</td>
                                 <td data-th="Servicio">{{ $estimate->service }}</td>
                                 <td data-th="Estatus">
+                                    @if (!$estimate->discount)
+                                        @php
+                                            unset($statuses['Vendida con descuento']);
+                                        @endphp
+                                    @else
+                                        @php
+                                            $statuses['Vendida con descuento'] = 'Vendida con descuento';
+                                        @endphp
+                                    @endif
                                     {{ Form::open(['url' => 'cotizaciones/' . $estimate->id . '/changeStatus', 'class' => 'change-status-form']) }}
                                         {{ Form::select('status', $statuses, $estimate->status, ['class' => 'select2 change-status', 'data-placeholder' => 'Cambiar estatus']) }}
                                     {{ Form::close() }}
                                 </td>
-                                <td data-th="Total"><span class="price">${{ number_format((float) $estimate->total, 2, '.', ',') }}</span></td>
+                                <td data-th="Total">
+                                    @if ($estimate->discount)
+										<span class="price discount"><i class="typcn typcn-tag"></i>${{ number_format((float) $estimate->discount, 2, '.', ',') }}</span>
+	                                    <br>
+									@endif
+                                    <span class="price">${{ number_format((float) $estimate->total, 2, '.', ',') }}</span>
+                                </td>
                                 <td data-th="Opciones">
                                     <span href="#" class="dropdown">
                                         <i class="typcn typcn-social-flickr"></i>
@@ -94,4 +111,8 @@
         <!-- /.col-12 -->
     </div>
     <!-- /.row -->
+@endsection
+
+@section('modal')
+    @include('clientes.modal')
 @endsection

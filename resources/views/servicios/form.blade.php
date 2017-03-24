@@ -4,6 +4,11 @@
 </div>
 <!-- /.form-group -->
 <div class="form-group">
+    {{ Form::label('price', 'Precio', ['class' => 'label']) }}
+    {{ Form::input('text', 'price', null, ['class' => 'input']) }}
+</div>
+<!-- /.form-group -->
+<div class="form-group">
     {{ Form::label('content', 'Contenido', ['class' => 'label']) }}
     {{ Form::textarea('content', null, ['size' => '30x5', 'class' => 'input autosizable']) }}
 </div>

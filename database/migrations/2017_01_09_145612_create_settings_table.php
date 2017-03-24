@@ -20,6 +20,7 @@ class CreateSettingsTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->text('bank_details');
+            $table->text('estimate_description');
             $table->integer('logo_id')->unsigned()->nullable();
             $table->timestamps();
 

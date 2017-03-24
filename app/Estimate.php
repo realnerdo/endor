@@ -19,6 +19,7 @@ class Estimate extends Model
         'folio',
         'service',
         'status',
+        'payment_type',
         'description',
         'total',
         'discount',

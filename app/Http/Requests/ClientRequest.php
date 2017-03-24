@@ -25,7 +25,7 @@ class ClientRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:clients',
+            'email' => 'required|email',
             'phone' => 'required'
         ];
     }
@@ -41,7 +41,6 @@ class ClientRequest extends FormRequest
             'name.required' => 'No has escrito un nombre',
             'email.required' => 'No has escrito un correo electrónico',
             'email.email' => 'El correo electrónico que escribiste no es válido',
-            'email.unique' => 'El correo electrónico que escribiste ya existe',
             'phone.required' => 'No has escrito un teléfono'
         ];
     }

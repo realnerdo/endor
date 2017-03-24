@@ -87,7 +87,7 @@ class ClientController extends Controller
      */
     public function getClientById($id)
     {
-        $client = Client::find($id);
+        $client = Client::with('estimates')->find($id);
         return $client;
     }
 

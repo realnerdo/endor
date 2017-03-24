@@ -33,12 +33,10 @@
     <!-- /.col-3 -->
     <div class="col-3">
         <div class="form-group">
-            {{ Form::label('description', 'Descripción', ['class' => 'label']) }}
-            {{ Form::textarea('description', null, ['size' => '10x3', 'class' => 'input autosizable', 'required']) }}
-        </div>
-        <!-- /.form-group -->
-    </div>
-    <!-- /.col-3 -->
+            {{ Form::label('payment_type', 'Tipo de inversión', ['class' => 'label']) }}
+            {{ Form::select('payment_type', $payment_types, null, ['class' => 'select2', 'data-placeholder' => 'Inversión']) }}
+        </div><!-- /.form-group -->
+    </div><!-- /.col-3 -->
     <div class="col-3">
         <div class="form-group">
             {{ Form::label('status', 'Estatus', ['class' => 'label']) }}
@@ -47,8 +45,12 @@
     </div><!-- /.col-3 -->
     <div class="col-3">
         <div class="form-group">
-            {{ Form::label('discount', 'Con descuento', ['class' => 'label']) }}
-            {{ Form::input('text', 'discount', null, ['class' => 'input', 'required']) }}
+            {{ Form::checkbox('with_discount', null, ($estimate->discount) ? true : false, ['id' => 'with_discount']) }}
+            {{ Form::label('discount', 'Con descuento', ['class' => 'label inline']) }}
+            @php
+                $has_discount = ($estimate->discount) ? '' : 'disabled';
+            @endphp
+            {{ Form::input('text', 'discount', null, ['class' => 'input', 'required', $has_discount, 'id' => 'discount']) }}
         </div><!-- /.form-group -->
     </div><!-- /.col-3 -->
     <div class="col-3">
@@ -57,6 +59,14 @@
             {{ Form::input('text', 'total', null, ['class' => 'input', 'required', 'readonly']) }}
         </div><!-- /.form-group -->
     </div><!-- /.col-3 -->
+    <div class="col-12">
+        <div class="form-group">
+            {{ Form::label('description', 'Descripción', ['class' => 'label']) }}
+            {{ Form::textarea('description', (isset($setting)) ? $setting->estimate_description : null, ['size' => '10x3', 'class' => 'input autosizable', 'required']) }}
+        </div>
+        <!-- /.form-group -->
+    </div>
+    <!-- /.col-12 -->
 </div>
 <!-- /.row -->
 <div class="row">
@@ -76,15 +86,15 @@
                 <div class="col-3">
                     <div class="form-group">
                         {{ Form::label('services[0][duration]', 'Duración (días)', ['class' => 'label']) }}
-                        {{ Form::input('text', 'services[0][duration]', null, ['class' => 'input service_duration', 'id' => '', 'required']) }}
+                        {{ Form::input('number', 'services[0][duration]', 0, ['class' => 'input service_duration', 'id' => '', 'required']) }}
                     </div>
                     <!-- /.form-group -->
                 </div>
                 <!-- /.col-3 -->
                 <div class="col-3">
                     <div class="form-group">
-                        {{ Form::label('services[0][offset]', 'Inicio', ['class' => 'label']) }}
-                        {{ Form::input('text', 'services[0][offset]', 0, ['class' => 'input service_offset', 'id' => '', 'required']) }}
+                        {{ Form::label('services[0][offset]', 'Día de inicio', ['class' => 'label']) }}
+                        {{ Form::input('number', 'services[0][offset]', 0, ['class' => 'input service_offset', 'id' => '', 'required']) }}
                     </div>
                     <!-- /.form-group -->
                 </div>
@@ -118,15 +128,15 @@
                     <div class="col-3">
                         <div class="form-group">
                             {{ Form::label('services['.$key.'][duration]', 'Duración (días)', ['class' => 'label']) }}
-                            {{ Form::input('text', 'services['.$key.'][duration]', $service->duration, ['class' => 'input service_duration', 'id' => '', 'required']) }}
+                            {{ Form::input('number', 'services['.$key.'][duration]', $service->duration, ['class' => 'input service_duration', 'id' => '', 'required']) }}
                         </div>
                         <!-- /.form-group -->
                     </div>
                     <!-- /.col-3 -->
                     <div class="col-3">
                         <div class="form-group">
-                            {{ Form::label('services['.$key.'][offset]', 'Inicio', ['class' => 'label']) }}
-                            {{ Form::input('text', 'services['.$key.'][offset]', $service->offset, ['class' => 'input service_offset', 'id' => '', 'required']) }}
+                            {{ Form::label('services['.$key.'][offset]', 'Día de inicio', ['class' => 'label']) }}
+                            {{ Form::input('number', 'services['.$key.'][offset]', $service->offset, ['class' => 'input service_offset', 'id' => '', 'required']) }}
                         </div>
                         <!-- /.form-group -->
                     </div>

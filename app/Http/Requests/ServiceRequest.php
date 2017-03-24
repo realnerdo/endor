@@ -25,6 +25,7 @@ class ServiceRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'price' => 'required',
             'content' => 'required',
             'notes' => 'required'
         ];
@@ -39,6 +40,7 @@ class ServiceRequest extends FormRequest
     {
         return [
             'title.required' => 'No has escrito un título',
+            'price.required' => 'No has escrito un precio',
             'content.required' => 'No has escrito un contenido',
             'notes.required' => 'No has escrito las cláusulas de contratación'
         ];

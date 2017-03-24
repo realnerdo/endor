@@ -32,6 +32,10 @@ img {
   text-align: right;
 }
 
+.tc {
+  text-align: center;
+}
+
 body {
   background: #fff;
 }

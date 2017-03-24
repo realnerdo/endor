@@ -95,6 +95,10 @@ img {
   text-align: right;
 }
 
+.tc {
+  text-align: center;
+}
+
 .btn {
   font-size: 14px;
   font-size: 1rem;
@@ -660,9 +664,11 @@ img {
   font-weight: 400;
 }
 
-.table tbody tr td .price.with-sale,
-.table tfoot tr td .price.with-sale {
-  text-decoration: line-through;
+.table tbody tr td .price.discount,
+.table tfoot tr td .price.discount {
+  font-size: 14px;
+  font-size: 1rem;
+  color: #e67e22;
 }
 
 .table tbody tr td .dropdown,
@@ -854,6 +860,10 @@ img {
   margin-bottom: .5rem;
 }
 
+.form .form-group .label.inline {
+  display: inline-block;
+}
+
 .form .form-group .input {
   font-size: 16px;
   font-size: 1.1428571429rem;
@@ -867,7 +877,7 @@ img {
   width: 100%;
 }
 
-.form .form-group .input[readonly] {
+.form .form-group .input[readonly], .form .form-group .input[disabled] {
   background: #ecf0f1;
   cursor: not-allowed;
 }
@@ -983,6 +993,15 @@ img {
   padding: 1rem;
 }
 
+.layer .modal .content .link {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.layer .modal .content .link:hover {
+  text-decoration: underline;
+}
+
 .layer .modal .content p {
   font-size: 16px;
   font-size: 1.1428571429rem;
@@ -1001,42 +1020,13 @@ img {
   background: #fbfcfc;
 }
 
-.counter {
-  border-radius: 0.2142857143rem;
-  overflow: hidden;
-  position: relative;
+.report-totals {
+  margin-bottom: 1rem;
 }
 
-.counter .icon {
-  background: #3498db;
-  text-align: center;
-  height: 5.7142857143rem;
-}
-
-.counter .icon .typcn {
-  font-size: 30px;
-  font-size: 2.1428571429rem;
-  color: #fff;
-  position: relative;
-  top: .5rem;
-}
-
-.counter .count {
-  font-size: 20px;
-  font-size: 1.4285714286rem;
-  background: #fff;
-  height: 5.7142857143rem;
-  text-align: center;
-}
-
-.counter .count .qty,
-.counter .count .title {
-  display: block;
-}
-
-@media only screen and (max-width: 1200px) {
-  .summary .col-4 {
-    width: 50%;
+@media only screen and (min-width: 1200px) {
+  .report-totals th, .report-totals td {
+    text-align: center !important;
   }
 }
 

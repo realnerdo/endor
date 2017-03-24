@@ -10,11 +10,10 @@
     <!-- /.header -->
     @php
         $options = [
-            '/' => ['icon' => 'home', 'name' => 'Inicio'],
+            'reportes' => ['icon' => 'chart-pie', 'name' => 'Reportes'],
             'cotizaciones' => ['icon' => 'clipboard', 'name' => 'Cotizaciones'],
             'clientes' => ['icon' => 'group', 'name' => 'Clientes'],
-            'servicios' => ['icon' => 'clipboard', 'name' => 'Servicios'],
-            'reportes' => ['icon' => 'chart-pie', 'name' => 'Reportes']
+            'servicios' => ['icon' => 'clipboard', 'name' => 'Servicios']
         ];
 
         $admin_options = [

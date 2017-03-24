@@ -35,6 +35,11 @@
 </div>
 <!-- /.form-group -->
 <div class="form-group">
+    {{ Form::label('estimate_description', 'Descripción de cotización', ['class' => 'label']) }}
+    {{ Form::textarea('estimate_description', null, ['size' => '30x5', 'class' => 'input autosizable']) }}
+</div>
+<!-- /.form-group -->
+<div class="form-group">
     {{ Form::submit('Guardar', ['class' => 'btn btn-green']) }}
     {{ Html::link(url('/'), 'Cancelar', ['class' => 'btn btn-red']) }}
 </div>
