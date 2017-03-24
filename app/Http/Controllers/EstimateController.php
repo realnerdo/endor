@@ -35,7 +35,7 @@ class EstimateController extends Controller
      */
     public function index()
     {
-        $estimates = Estimate::latest()->paginate(5);
+        $estimates = Estimate::latest()->paginate(10);
         $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento' => 'Vendida con descuento', 'No vendida' => 'No vendida'];
         $settings = Setting::first();
         return view('cotizaciones.index', compact('estimates', 'statuses', 'settings'));

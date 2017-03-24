@@ -139,7 +139,7 @@ class ReportController extends Controller
     	    if($key != 'page') $values .= $value;
     	}
     	if($values == ''){
-            $result['paginated'] = Estimate::latest()->paginate(5);
+            $result['paginated'] = Estimate::latest()->paginate(10);
             $result['all'] = Estimate::latest()->get();
     	}else{
     	    $estimates = Estimate::latest();
@@ -160,7 +160,7 @@ class ReportController extends Controller
     	    		$query->where('title', $request->input('service_title'));
     	    	});
     	    }
-    	    $result['paginated'] = $estimates->paginate(5);
+    	    $result['paginated'] = $estimates->paginate(10);
             $result['all'] = Estimate::latest()->get();
     	}
 
