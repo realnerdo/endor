@@ -61,7 +61,7 @@
 	<div class="row">
 		@unless($estimates->isEmpty())
 			@if($values == '')
-				<div class="col-12">Mostrando todas las cotizaciones. Total: {{ $estimates->count() }}</div><!-- /.col-12 -->
+				<div class="col-12">Resultados: <b>{{ $estimates->total() }}</b>. Mostrando todas las cotizaciones.</div><!-- /.col-12 -->
 			@else
 				@php
 					$showing = '';
