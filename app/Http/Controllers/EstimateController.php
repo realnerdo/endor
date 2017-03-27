@@ -138,7 +138,7 @@ class EstimateController extends Controller
         $pdf = \PDF::loadView('cotizaciones.pdf', ['estimate' => $estimate]);
         $pdf->setOption('header-html', $header)->setOption('margin-top', 25);
         $pdf->setOption('footer-html', $footer)->setOption('margin-bottom', 20);
-        $filename = $setting->company.' - Cotización para '.$estimate->client->name.'['.Carbon::now().'].pdf';
+        $filename = 'Cotización - '.$estimate->client->name.' - '. $estimate->service .'['.Carbon::now().'].pdf';
         return $pdf->download($filename);
     }
 
@@ -156,7 +156,7 @@ class EstimateController extends Controller
         $pdf = \PDF::loadView('cotizaciones.pdf', ['estimate' => $estimate]);
         $pdf->setOption('header-html', $header)->setOption('margin-top', 25);
         $pdf->setOption('footer-html', $footer)->setOption('margin-bottom', 20);
-        $filename = $setting->company.' - Cotización para '.$estimate->client->name.'['.Carbon::now().'].pdf';
+        $filename = 'Cotización - '.$estimate->client->name.' - '. $estimate->service .'['.Carbon::now().'].pdf';
         return $pdf->stream($filename);
         // return view('cotizaciones.pdf', compact('estimate'));
     }
