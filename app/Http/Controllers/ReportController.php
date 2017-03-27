@@ -139,8 +139,8 @@ class ReportController extends Controller
     	    if($key != 'page') $values .= $value;
     	}
     	if($values == ''){
-            $result['paginated'] = Estimate::latest()->paginate(15);
             $result['all'] = Estimate::latest()->get();
+            $result['paginated'] = Estimate::latest()->paginate(15);
     	}else{
     	    $estimates = Estimate::latest();
     	    if($request->has('from') && $request->input('from') != '')
@@ -160,8 +160,8 @@ class ReportController extends Controller
     	    		$query->where('title', $request->input('service_title'));
     	    	});
     	    }
+            $result['all'] = $estimates->get();
     	    $result['paginated'] = $estimates->paginate(15);
-            $result['all'] = Estimate::latest()->get();
     	}
 
     	return $result;
