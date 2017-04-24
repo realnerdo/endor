@@ -15,6 +15,8 @@ use App\User;
 use App\Setting;
 use Auth;
 use Config;
+use Mail;
+use App\Mail\EstimateGenerated;
 
 class EstimateController extends Controller
 {
@@ -178,6 +180,44 @@ class EstimateController extends Controller
     private function pdfFooter()
     {
         return view('cotizaciones.footer');
+    }
+
+    /**
+     * Send estimate via email.
+     *
+     * @param  \App\Http\Requests\EstimateEmailRequest  $request
+     * @param  Estimate  $estimate
+     * @return \Illuminate\Http\Response
+     */
+    public function email(EstimateEmailRequest $request, Estimate $estimate)
+    {
+        // Email
+        $email = $estimate->emails()->create([
+            'to' => $request->input('email'),
+            'subject' => $request->input('subject'),
+            'message' => $request->input('message')
+        ]);
+
+        $setting = Setting::latest()->first();
+        $header = $this->pdfHeader($estimate);
+        $footer = $this->pdfFooter();
+        $pdf = \PDF::loadView('cotizaciones.pdf', ['estimate' => $estimate]);
+        $pdf->setOption('header-html', $header)->setOption('margin-top', 25);
+        $pdf->setOption('footer-html', $footer)->setOption('margin-bottom', 20);
+        $filename = $estimate->client->name.' - '. $estimate->service;
+        $slug = str_slug($filename);
+        $path = 'storage/cotizaciones/'.$slug.'.pdf';
+        $pdf->save($path, true);
+        $request->merge(['pdf' => $path]);
+        Config::set('mail.username', Auth::user()->email);
+        Config::set('mail.password', Auth::user()->email_password);
+        Config::set('mail.from', ['address' => Auth::user()->email, 'name' => Auth::user()->name]);
+        Mail::to($request->input('email'))->send(new EstimateGenerated($estimate, $request, $email));
+        unlink($path);
+
+        session()->flash('flash_message', 'Se ha enviado la cotización '.$estimate->folio.' al correo: '.$request->input('email'));
+        return redirect('cotizaciones');
+        // return view('emails.estimate', compact('estimate', 'request'));
     }
 
     /**

@@ -58,8 +58,18 @@ $(function(){
     var modal = $('.modal');
     if(modal.length){
 
-        function show_modal(modal_id, resource_id) {
-            var modal = $('#'+modal_id);
+        function show_modal(modal_id, resource_id, client_email) {
+            var modal = $('#'+modal_id),
+                form = modal.find('.form'),
+                action = form.attr('action')
+                action_id = action.replace('{id}', resource_id);
+
+            if(form.length)
+                form.attr('action', action_id);
+            if(client_email){
+                $('#send-mail').find('input[name="email"]').val(client_email);
+            }
+
             if(modal_id == 'client-modal'){
                 $.get(base_url + '/clientes/getClientById/'+resource_id, function(data){
                     var p_name = $('<p>', {
@@ -80,22 +90,31 @@ $(function(){
                     content.append(p_phone);
                     content.append(p_email);
                     content.append(p_estimates);
-                    console.log(data);
-                    modal.addClass('show');
                 });
             }
+
+            modal.addClass('show');
         }
 
         function close_modal(){
             var modal = $('.layer');
             modal.removeClass('show');
+
+            var form = modal.find('.form');
+            if(form.length){
+                var action = form.attr('action'),
+                    action_wildcard = action.replace(/\d+/g, '{id}');
+                form.attr('action', action_wildcard);
+                form[0].reset();
+            }
         }
 
         $body.on('click', '.modal-trigger', function(){
             var $this = $(this),
                 modal_id = $this.data('modal'),
-                resource_id = $this.data('id');
-            show_modal(modal_id, resource_id);
+                resource_id = $this.data('id'),
+                client_email = ($this[0].hasAttribute('data-email')) ? $this.data('email') : null;
+            show_modal(modal_id, resource_id, client_email);
             return false;
         });
 

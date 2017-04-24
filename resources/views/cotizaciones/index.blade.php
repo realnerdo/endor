@@ -82,6 +82,10 @@
                                             </li>
                                             <!-- /.item -->
                                             <li class="item">
+                                                <a href="#" class="link modal-trigger" data-modal="send-mail" data-id="{{ $estimate->id }}" data-email="{{ $estimate->client->email }}"><i class="typcn typcn-mail"></i> Enviar correo</a>
+                                            </li>
+                                            <!-- /.item -->
+                                            <li class="item">
                                                 {{ Form::open(['url' => url('cotizaciones', $estimate->id), 'method' => 'DELETE', 'class' => 'delete-form']) }}
                                                     <button type="submit" class="link"><i class="typcn typcn-delete"></i> Eliminar</button>
                                                 {{ Form::close() }}
@@ -115,4 +119,5 @@
 
 @section('modal')
     @include('clientes.modal')
+    @include('cotizaciones.email_modal')
 @endsection

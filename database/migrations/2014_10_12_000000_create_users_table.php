@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('username')->unique();
             $table->string('email')->unique();
+            $table->string('email_password');
             $table->string('password');
             $table->integer('picture_id')->unsigned()->nullable();
             $table->enum('role', ['admin', 'executive'])->default('executive');

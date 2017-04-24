@@ -19,16 +19,18 @@ class EstimateGenerated extends Mailable
     */
    public $estimate;
    public $request;
+   public $email;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Estimate $estimate, $request)
+    public function __construct(Estimate $estimate, $request, $email)
     {
         $this->estimate = $estimate;
         $this->request = $request;
+        $this->email = $email;
     }
 
     /**

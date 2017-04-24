@@ -46,4 +46,9 @@ class Estimate extends Model
     {
         return $this->hasOne('App\Calendar');
     }
+
+    public function emails()
+    {
+        return $this->hasMany('App\Email');
+    }
 }
