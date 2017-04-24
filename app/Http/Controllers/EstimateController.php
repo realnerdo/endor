@@ -35,7 +35,7 @@ class EstimateController extends Controller
      */
     public function index()
     {
-        $estimates = Estimate::latest()->paginate(15);
+        $estimates = Auth::user()->estimates()->latest()->paginate(15);
         $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento' => 'Vendida con descuento', 'No vendida' => 'No vendida'];
         $settings = Setting::first();
         return view('cotizaciones.index', compact('estimates', 'statuses', 'settings'));
@@ -140,7 +140,7 @@ class EstimateController extends Controller
         $pdf = \PDF::loadView('cotizaciones.pdf', ['estimate' => $estimate]);
         $pdf->setOption('header-html', $header)->setOption('margin-top', 25);
         $pdf->setOption('footer-html', $footer)->setOption('margin-bottom', 20);
-        $filename = 'Cotización - '.$estimate->client->name.' - '. $estimate->service .' ['.Carbon::now()->toDateString().'].pdf';
+        $filename = $estimate->client->name.' - '. $estimate->service . '.pdf';
         return $pdf->download($filename);
     }
 
@@ -158,7 +158,7 @@ class EstimateController extends Controller
         $pdf = \PDF::loadView('cotizaciones.pdf', ['estimate' => $estimate]);
         $pdf->setOption('header-html', $header)->setOption('margin-top', 25);
         $pdf->setOption('footer-html', $footer)->setOption('margin-bottom', 20);
-        $filename = 'Cotización - '.$estimate->client->name.' - '. $estimate->service .' ['.Carbon::now()->toDateString().'].pdf';
+        $filename = $estimate->client->name.' - '. $estimate->service . '.pdf';
         return $pdf->stream($filename);
         // return view('cotizaciones.pdf', compact('estimate'));
     }
