@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ServiceRequest;
 use App\Service;
+use App\Section;
 
 class ServiceController extends Controller
 {
@@ -48,6 +49,12 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
         $service = Service::create($request->all());
+        foreach ($request->input('sections') as $section) {
+            $service->sections()->create([
+                'title' => $section['title'],
+                'content' => $section['content']
+            ]);
+        }
         session()->flash('flash_message', 'Se ha agregado el servicio: '.$service->title);
         return redirect('servicios');
     }
@@ -71,7 +78,7 @@ class ServiceController extends Controller
      */
     public function getServiceByTitle($title)
     {
-        $service = Service::where('title', $title)->first();
+        $service = Service::where('title', $title)->with('sections')->first();
         return $service;
     }
 
@@ -84,8 +91,17 @@ class ServiceController extends Controller
      */
     public function update(ServiceRequest $request, Service $service)
     {
+        foreach ($service->sections as $section) {
+            Section::find($section->id)->delete();
+        }
         $service->update($request->all());
-        session()->flash('flash_message', 'Se ha actualizado el servicio: '.$service->name);
+        foreach ($request->input('sections') as $section) {
+            $service->sections()->create([
+                'title' => $section['title'],
+                'content' => $section['content']
+            ]);
+        }
+        session()->flash('flash_message', 'Se ha actualizado el servicio: '.$service->title);
         return redirect('servicios');
     }
 

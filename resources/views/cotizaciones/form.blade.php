@@ -114,14 +114,23 @@
                     </div>
                     <!-- /.form-group -->
                 </div><!-- /.col-3 -->
-                <div class="col-12">
-                    <div class="form-group">
-                        {{ Form::label('services[0][content]', 'Contenido', ['class' => 'label']) }}
-                        {{ Form::textarea('services[0][content]', null, ['size' => '10x10', 'class' => 'input autosizable service_content', 'id' => '', 'required']) }}
-                        {{ Form::hidden('services[0][notes]', null, ['class' => 'service_notes']) }}
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="title">Secciones</h3><!-- /.title -->
                     </div>
-                    <!-- /.form-group -->
-                </div><!-- /.col-12 -->
+                    <!-- /.col-12 -->
+                    <div class="sections_list"></div>
+                    <!-- /.sections_list -->
+                    <div class="col-12">
+                        <div class="buttons pr">
+                            <button class="btn btn-blue add-section"><i class="typcn typcn-plus"></i> Añadir otra sección</button>
+                            {{ Form::hidden('services[0][notes]', null, ['class' => 'service_notes']) }}
+                        </div>
+                        <!-- /.buttons pr -->
+                    </div>
+                    <!-- /.col-12 -->
+                </div>
+                <!-- /.row -->
             </div><!-- /.service -->
         @else
             @foreach ($estimate->estimate_services as $key => $service)
@@ -156,17 +165,58 @@
                         </div>
                         <!-- /.form-group -->
                     </div><!-- /.col-3 -->
-                    <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="title">Secciones</h3><!-- /.title -->
+                        </div>
+                        <!-- /.col-12 -->
+                        <div class="sections_list">
+                            @foreach ($service->estimate_sections as $k => $section)
+                                <div class="section row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            {{ Form::label('services[' . $key . '][sections][' . $k . '][title]', 'Título', ['class' => 'label']) }}
+                                            {{ Form::input('text', 'services[' . $key . '][sections][' . $k . '][title]', $section->title, ['class' => 'input']) }}
+                                        </div>
+                                        <!-- /.form-group -->
+                                        <div class="form-group">
+                                            {{ Form::label('services[' . $key . '][sections][' . $k . '][content]', 'Contenido', ['class' => 'label']) }}
+                                            {{ Form::textarea('services[' . $key . '][sections][' . $k . '][content]', $section->content, ['size' => '30x8', 'class' => 'input autosizable']) }}
+                                        </div>
+                                        <!-- /.form-group -->
+                                    </div>
+                                    <!-- /.col-12 -->
+                                    @if($k != 0)
+                                        <div class="col-12">
+                                            <button class="btn btn-red delete-service">Eliminar sección</button>
+                                        </div><!-- /.col-12 -->
+                                    @endif
+                                </div>
+                                <!-- /.section row -->
+                            @endforeach
+                        </div>
+                        <!-- /.sections_list -->
+                        <div class="col-12">
+                            <div class="buttons pr">
+                                <button class="btn btn-blue add-section"><i class="typcn typcn-plus"></i> Añadir otra sección</button>
+                                {{ Form::hidden('services[0][notes]', null, ['class' => 'service_notes']) }}
+                            </div>
+                            <!-- /.buttons pr -->
+                        </div>
+                        <!-- /.col-12 -->
+                    </div>
+                    <!-- /.row -->
+                    {{-- <div class="col-12">
                         <div class="form-group">
                             {{ Form::label('services['.$key.'][content]', 'Contenido', ['class' => 'label']) }}
                             {{ Form::textarea('services['.$key.'][content]', $service->content, ['size' => '10x10', 'class' => 'input autosizable service_content', 'id' => '', 'required']) }}
                             {{ Form::hidden('services['.$key.'][notes]', $service->notes, ['class' => 'service_notes']) }}
                         </div>
                         <!-- /.form-group -->
-                    </div><!-- /.col-12 -->
+                    </div><!-- /.col-12 --> --}}
                     @if($key != 0)
                         <div class="col-12">
-                            <button class="btn btn-red delete-service">Eliminar</button>
+                            <button class="btn btn-red delete-service">Eliminar servicio</button>
                         </div><!-- /.col-12 -->
                     @endif
                 </div><!-- /.service -->

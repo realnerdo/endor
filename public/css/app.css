@@ -1020,6 +1020,14 @@ img {
   background: #fbfcfc;
 }
 
+.sections_list .section {
+  background: white;
+}
+
+.sections_list .section:nth-child(odd) {
+  background: #fbfcfc;
+}
+
 .report-totals {
   margin-bottom: 1rem;
 }

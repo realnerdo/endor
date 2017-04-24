@@ -163,16 +163,87 @@ $(function(){
             input_total.val(total);
         }
 
+        function add_estimate_sections(sections, sections_list, index){
+
+            sections_list.empty();
+
+            for (var i = 0; i < sections.length; i++) {
+                var section_div = $('<div>', {
+                        class: 'section row'
+                    }),
+                    col_section_div = $('<div>', { class: 'col-12' }),
+                    title_form_group_div = $('<div>', { class: 'form-group' }),
+                    title_label = $('<label>', {
+                        class: 'label',
+                        id: 'services[' + index + '][sections][' + i + '][title]',
+                        text: 'Título'
+                    }),
+                    title_input = $('<input>', {
+                        type: 'text',
+                        class: 'input',
+                        name: 'services[' + index + '][sections][' + i + '][title]',
+                        value: sections[i].title
+                    }),
+                    content_form_group_div = $('<div>', { class: 'form-group' }),
+                    content_label = $('<label>', {
+                        class: 'label',
+                        id: 'services[' + index + '][sections][' + i + '][content]',
+                        text: 'Contenido'
+                    }),
+                    content_textarea = $('<textarea>', {
+                        class: 'input autosizable',
+                        cols: '30',
+                        rows: '8',
+                        name: 'services[' + index + '][sections][' + i + '][content]',
+                        text: sections[i].content
+                    }),
+                    col_delete_div = $('<div>', {
+                        class: 'col-12',
+                        html: $('<button>', {
+                            class: 'btn btn-red delete-section',
+                            text: 'Eliminar sección'
+                        })
+                    });
+
+                autosize(content_textarea);
+
+                title_form_group_div.append(title_label);
+                title_form_group_div.append(title_input);
+
+                content_form_group_div.append(content_label);
+                content_form_group_div.append(content_textarea);
+
+                col_section_div.append(title_form_group_div);
+                col_section_div.append(content_form_group_div);
+
+                section_div.append(col_section_div);
+
+                if(i != 0){
+                    section_div.append(col_delete_div);
+                }
+
+                sections_list.append(section_div);
+            }
+
+        }
+
         $body.on('change', '.service_title', function(){
             var $this = $(this),
                 title = $this.val(),
                 input_price = $this.closest('.service').find('.service_price'),
-                textarea_content = $this.closest('.service').find('.service_content'),
-                hidden_notes = $this.closest('.service').find('.service_notes');
+                input_price_name = input_price.attr('name'),
+                name = input_price_name.replace('services[', ''),
+                index = name.replace('][price]', ''),
+                // textarea_content = $this.closest('.service').find('.service_content'),
+                hidden_notes = $this.closest('.service').find('.service_notes'),
+                sections_list = $this.closest('.service').find('.sections_list');
+
+
             $.get(base_url+'/servicios/getServiceByTitle/'+title, function(data){
                 input_price.val(data.price);
-                textarea_content.val(data.content);
+                // // textarea_content.val(data.content);
                 hidden_notes.val(data.notes);
+                add_estimate_sections(data.sections, sections_list, index);
                 calculate_total();
             });
         });
@@ -197,7 +268,9 @@ $(function(){
             var service_form = services_list.find('.service').first();
             var cloned = service_form.clone().find('input:text').val('').end().find('textarea').val('').end();
             var select2_old = cloned.find('.select2-container');
+            var sections_list = cloned.find('.sections_list');
 
+            sections_list.empty();
             select2_old.remove();
 
             var selectable_add = cloned.find('.select2-add');
@@ -210,7 +283,7 @@ $(function(){
             var div_delete = $('<div>', {
                 class: 'col-12',
                 html: $('<button>', {
-                    text: 'Eliminar',
+                    text: 'Eliminar servicio',
                     class: 'btn btn-red delete-service'
                 })
             });
@@ -238,6 +311,63 @@ $(function(){
 
         $body.on('click', '.delete-service', function(){
             var service = $(this).closest('.service').remove();
+        });
+    }
+
+    // Services
+    var sections_list = $('.sections_list');
+    if(sections_list.length){
+
+        function add_section_form(sections_list){
+            var sections_list = $('.sections_list');
+
+            var section_form = sections_list.find('.section').first();
+            var cloned = section_form.clone().find('input:text').val('').end().find('textarea').val('').end();
+
+            var div_delete = $('<div>', {
+                class: 'col-12',
+                html: $('<button>', {
+                    text: 'Eliminar',
+                    class: 'btn btn-red delete-section'
+                })
+            });
+            cloned.append(div_delete);
+
+            cloned.appendTo(sections_list);
+
+            var sections_count = parseInt($('.section').length);
+
+            var services_list = $('.services_list');
+            if(services_list.length){
+                var inputs = cloned.find('[name*="[sections][0]"]');
+                inputs.each(function(){
+                    var $this = $(this),
+                        input_name = $this.attr('name'),
+                        new_name = input_name.replace('[sections][0]', '[sections]['+(sections_count - 1)+']');
+
+                    $this.attr('name', new_name);
+                });
+            }else{
+                var inputs = cloned.find('[name^="sections[0]"]');
+                inputs.each(function(){
+                    var $this = $(this),
+                        input_name = $this.attr('name'),
+                        new_name = input_name.replace('[0]', '['+(sections_count - 1)+']');
+
+                    $this.attr('name', new_name);
+                });
+            }
+        }
+
+        $body.on('click', '.add-section', function(){
+            var sections_list = $(this).closest('[class^="col-"]').prev('.sections_list');
+            add_section_form(sections_list);
+            console.log(sections_list);
+            return false;
+        });
+
+        $body.on('click', '.delete-section', function(){
+            var section = $(this).closest('.section').remove();
         });
     }
 

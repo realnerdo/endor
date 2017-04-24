@@ -16,7 +16,7 @@ class CreateEstimateServicesTable extends Migration
         Schema::create('estimate_services', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('content');
+            $table->text('content')->nullable(); // Delete
             $table->text('notes');
             $table->float('price');
             $table->integer('duration');

@@ -92,14 +92,20 @@ class EstimateController extends Controller
         $estimate = Auth::user()->estimates()->create($request->all());
 
         foreach ($request->input('services') as $key => $service) {
-            $estimate->estimate_services()->create([
+            $estimate_service = $estimate->estimate_services()->create([
                 'title' => $service['title'],
-                'content' => $service['content'],
                 'notes' => $service['notes'],
                 'price' => $service['price'],
                 'duration' => $service['duration'],
                 'offset' => $service['offset']
             ]);
+
+            foreach ($service['sections'] as $section) {
+                $estimate_service->estimate_sections()->create([
+                    'title' => $section['title'],
+                    'content' => $section['content']
+                ]);
+            }
         }
 
         session()->flash('flash_message', 'Se ha generado la cotización: '.$estimate->folio);
@@ -199,14 +205,20 @@ class EstimateController extends Controller
         $estimate->update($request->all());
 
         foreach ($request->input('services') as $key => $service) {
-            $estimate->estimate_services()->create([
+            $estimate_service = $estimate->estimate_services()->create([
                 'title' => $service['title'],
-                'content' => $service['content'],
                 'notes' => $service['notes'],
                 'price' => $service['price'],
                 'duration' => $service['duration'],
                 'offset' => $service['offset']
             ]);
+
+            foreach ($service['sections'] as $section) {
+                $estimate_service->estimate_sections()->create([
+                    'title' => $section['title'],
+                    'content' => $section['content']
+                ]);
+            }
         }
         session()->flash('flash_message', 'Se ha actualizado la cotización: '.$estimate->folio);
         return redirect('cotizaciones');

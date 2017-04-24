@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Section extends Model
 {
     /**
      * The attributes that are mass assignable.
      * @var array
      */
-    protected $fillable = ['title', 'price', 'notes'];
+    protected $fillable = ['title', 'content'];
 
-    public function sections()
+    public function service()
     {
-        return $this->hasMany('App\Section');
+        return $this->belongsTo('App\Service');
     }
 }
