@@ -83,7 +83,6 @@
         <section class="email">
             <div class="message">
                 {{ $request->input('message') }}
-                <img src="{{ url('emails/track/'.$email->id) }}" width="1" height="1" border="0">
             </div>
             <!-- /.message -->
 

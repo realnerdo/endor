@@ -65,4 +65,3 @@ Route::get('reportes/exportExcel', 'ReportController@exportExcel');
 
 // Emails
 Route::get('emails', 'EmailController@index');
-Route::get('emails/track/{email}', 'EmailController@track');

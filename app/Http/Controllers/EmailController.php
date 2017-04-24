@@ -27,11 +27,4 @@ class EmailController extends Controller
         $emails = Email::latest()->paginate(15);
         return view('emails.index', compact('emails'));
     }
-
-    public function track(Email $email)
-    {
-        $email->update([
-            'opened_at' => Carbon::now()
-        ]);
-    }
 }
