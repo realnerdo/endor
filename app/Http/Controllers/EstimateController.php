@@ -35,7 +35,7 @@ class EstimateController extends Controller
      */
     public function index()
     {
-        $estimates = Auth::user()->estimates()->latest()->paginate(15);
+        $estimates = (Auth::user()->role == 'admin') ? Estimate::latest()->paginate(15) : Auth::user()->estimates()->latest()->paginate(15);
         $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento' => 'Vendida con descuento', 'No vendida' => 'No vendida'];
         $settings = Setting::first();
         return view('cotizaciones.index', compact('estimates', 'statuses', 'settings'));
