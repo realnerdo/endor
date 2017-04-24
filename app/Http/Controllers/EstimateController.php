@@ -53,10 +53,11 @@ class EstimateController extends Controller
         $clients = [''=>''] + $clients->toArray();
         $services = Service::pluck('title', 'title');
         $services = [''=>''] + $services->toArray();
-        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento', 'No vendida' => 'No vendida'];
+        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento' => 'Vendida con descuento', 'No vendida' => 'No vendida'];
+        $origins = ['Google' => 'Google', 'LinkedIn' => 'LinkedIn', 'Llamada' => 'Llamada', 'Referido' => 'Referido'];
         $payment_types = ['Normal' => 'Normal', 'Mensual' => 'Mensual'];
         $users = User::pluck('name', 'id');
-        return view('cotizaciones.create', compact('clients', 'services', 'statuses', 'payment_types', 'users', 'setting'));
+        return view('cotizaciones.create', compact('clients', 'services', 'statuses', 'origins', 'payment_types', 'users', 'setting'));
     }
 
     /**
@@ -118,10 +119,11 @@ class EstimateController extends Controller
         $clients = [''=>''] + $clients->toArray();
         $services = Service::pluck('title', 'title');
         $services = [''=>''] + $services->toArray();
-        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento', 'No vendida' => 'No vendida'];
+        $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento' => 'Vendida con descuento', 'No vendida' => 'No vendida'];
+        $origins = ['Google' => 'Google', 'LinkedIn' => 'LinkedIn', 'Llamada' => 'Llamada', 'Referido' => 'Referido'];
         $payment_types = ['Normal' => 'Normal', 'Mensual' => 'Mensual'];
         $users = User::pluck('name', 'id');
-        return view('cotizaciones.edit', compact('estimate', 'clients', 'statuses', 'payment_types', 'services', 'users'));
+        return view('cotizaciones.edit', compact('estimate', 'clients', 'statuses', 'origins', 'payment_types', 'services', 'users'));
     }
 
     /**

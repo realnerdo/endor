@@ -17,6 +17,7 @@ class CreateEstimatesTable extends Migration
             $table->increments('id');
             $table->string('folio');
             $table->enum('status', ['En espera', 'Vendida', 'Vendida con descuento', 'No vendida'])->default('En espera');
+            $table->enum('origin', ['Google', 'LinkedIn', 'Llamada', 'Referido'])->default('Google');
             $table->enum('payment_type', ['Normal', 'Mensual'])->default('Normal');
             $table->string('service');
             $table->text('description');

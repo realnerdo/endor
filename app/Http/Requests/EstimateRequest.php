@@ -29,7 +29,8 @@ class EstimateRequest extends FormRequest
             'phone' => 'numeric',
             'service' => 'required',
             'payment_type' => 'required',
-            'services' => 'required'
+            'services' => 'required',
+            'origin' => 'required'
         ];
     }
 
@@ -46,7 +47,8 @@ class EstimateRequest extends FormRequest
             'phone.numeric' => 'No has escrito un número de teléfono válido',
             'service.required' => 'No has escrito un servicio',
             'payment_type.required' => 'No has seleccionado un tipo de inversión',
-            'services' => 'No has seleccionado ningún servicio'
+            'services.required' => 'No has seleccionado ningún servicio',
+            'origin.required' => 'No has seleccionado ningún origen'
         ];
     }
 }

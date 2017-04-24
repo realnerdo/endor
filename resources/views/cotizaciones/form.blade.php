@@ -59,6 +59,14 @@
             {{ Form::input('text', 'total', null, ['class' => 'input', 'required', 'readonly']) }}
         </div><!-- /.form-group -->
     </div><!-- /.col-3 -->
+    <div class="col-3">
+        <div class="form-group">
+            {{ Form::label('origin', 'Origen', ['class' => 'label']) }}
+            {!! Form::select('origin', $origins, null, ['class' => 'select2', 'data-placeholder' => 'Origen']) !!}
+        </div>
+        <!-- /.form-group -->
+    </div>
+    <!-- /.col-3 -->
     <div class="col-12">
         <div class="form-group">
             {{ Form::label('description', 'Descripción', ['class' => 'label']) }}
