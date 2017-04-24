@@ -28,7 +28,17 @@
                         <div class="service">
                             <h5 class="title">{{ $service->title }}</h5>
                             <div class="content">
-                                {!! \GrahamCampbell\Markdown\Facades\Markdown::convertToHtml($service->content) !!}
+                                @foreach ($service->estimate_sections as $section)
+                                    <h1>{{ $section->title }}</h1>
+                                    <ul>
+                                        @php
+                                            $items = explode("\n", $section->content);
+                                        @endphp
+                                        @foreach ($items as $item)
+                                            <li>{{ $item }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endforeach
                             </div><!-- /.content -->
                         </div><!-- /.service -->
                     @endforeach
@@ -145,7 +155,7 @@
                     @endphp
                     @foreach ($estimate->estimate_services as $service)
                         @php
-                            $notes = explode('- ', $service->notes);
+                            $notes = explode("\n", $service->notes);
                             $all = array_merge($all, $notes);
                         @endphp
                     @endforeach
