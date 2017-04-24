@@ -413,7 +413,7 @@ $(function(){
             var div_delete = $('<div>', {
                 class: 'col-12',
                 html: $('<button>', {
-                    text: 'Eliminar',
+                    text: 'Eliminar sección',
                     class: 'btn btn-red delete-section'
                 })
             });
@@ -448,7 +448,6 @@ $(function(){
         $body.on('click', '.add-section', function(){
             var sections_list = $(this).closest('[class^="col-"]').prev('.sections_list');
             add_section_form(sections_list);
-            console.log(sections_list);
             return false;
         });
 

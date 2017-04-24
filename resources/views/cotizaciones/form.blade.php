@@ -188,7 +188,7 @@
                                     <!-- /.col-12 -->
                                     @if($k != 0)
                                         <div class="col-12">
-                                            <button class="btn btn-red delete-service">Eliminar sección</button>
+                                            <button class="btn btn-red delete-section">Eliminar sección</button>
                                         </div><!-- /.col-12 -->
                                     @endif
                                 </div>
