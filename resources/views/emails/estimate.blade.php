@@ -131,6 +131,7 @@
                     <!-- /.backlink -->
                 </footer>
                 <!-- /.footer -->
+                <img src="{{ url('tracker/opened/'.$email->id) }}" width="1" height="1" border="0">
             </div>
 
         </section>

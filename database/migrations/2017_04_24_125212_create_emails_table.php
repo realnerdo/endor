@@ -18,6 +18,7 @@ class CreateEmailsTable extends Migration
             $table->string('to');
             $table->string('subject');
             $table->text('message');
+            $table->datetime('opened_at')->nullable();
             $table->integer('estimate_id')->unsigned();
             $table->timestamps();
             $table->foreign('estimate_id')
