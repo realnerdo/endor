@@ -99,6 +99,9 @@ class UserController extends Controller
             ]);
             $request->merge(['picture_id' => $picture->id]);
         }
+        if($request->input('email_password') == ''){
+            $request->merge(['email_password' => $user->email_password]);
+        }
         if($request->input('password') == ''){
             $user->update($request->except(['password']));
         }else{
