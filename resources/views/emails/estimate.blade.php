@@ -122,6 +122,7 @@
                 <!-- /.contact -->
 
                 <footer class="footer">
+                    <img src="https://docs.google.com/uc?export=download&id=0B6xxO42VR_x3TUw0b012X3ZMOG8&revid=0B6xxO42VR_x3YkZRZUVaMVlZS1p4c25zM05hOUZpa2RzblhJPQ" alt="Grupo Endor">
                     <img src="https://docs.google.com/uc?export=download&id=0B6xxO42VR_x3N3ZLNlNOVnRBUlU&revid=0B6xxO42VR_x3emg3UVNZKzdQM0gxeWlyOGhiLzZ2L1dzRnR3PQ" alt="Branding" class="branding">
                     <div class="backlink">¡Visítanos! <a href="https://grupoendor.com" class="link">grupoendor.com</a></div>
                     <!-- /.backlink -->
