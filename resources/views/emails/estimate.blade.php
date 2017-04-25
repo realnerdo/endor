@@ -19,7 +19,6 @@
             }
             .message{
                 line-height: 1.5em;
-                padding: 2rem;
             }
             .message p{
                 line-height: 1.5em;
@@ -27,7 +26,6 @@
                 margin-top: 0;
             }
             .signature{
-                padding: 2rem;
                 color: #222222;
             }
             .signature .logo{
