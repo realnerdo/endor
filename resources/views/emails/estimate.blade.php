@@ -82,7 +82,7 @@
     <body>
         <section class="email">
             <div class="message">
-                {{ nl2br($request->input('message')) }}
+                {!! nl2br($request->input('message')) !!}
             </div>
             <!-- /.message -->
 
