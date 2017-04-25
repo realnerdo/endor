@@ -28,13 +28,13 @@
                     <tbody>
                         @foreach ($emails as $email)
                             @php
-                                $opened_at = (is_null($email->opened_at)) ? 'Sin abrir' : $email->opened_at;
+                                $opened_at = (is_null($email->opened_at)) ? 'Sin abrir' : ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $email->opened_at)->diffForHumans());
                             @endphp
                             <tr>
                                 <td data-th="Enviado a">{{ $email->to }}</td>
                                 <td data-th="Asunto">{{ $email->subject }}</td>
                                 <td data-th="Mensaje">{{ $email->message }}</td>
-                                <td data-th="Fecha de apertura">{{ ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $opened_at)->diffForHumans()) }}</td>
+                                <td data-th="Fecha de apertura">{{ $opened_at }}</td>
                                 <td data-th="Fecha de envío">{{ ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $email->created_at)->diffForHumans()) }}</td>
                             </tr>
                         @endforeach
