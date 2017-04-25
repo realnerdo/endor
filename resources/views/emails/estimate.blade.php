@@ -82,7 +82,7 @@
     <body>
         <section class="email">
             <div class="message">
-                {{ $request->input('message') }}
+                {{ nl2br($request->input('message')) }}
             </div>
             <!-- /.message -->
 
@@ -122,8 +122,12 @@
                 <!-- /.contact -->
 
                 <footer class="footer">
-                    <img src="https://docs.google.com/uc?export=download&id=0B6xxO42VR_x3TUw0b012X3ZMOG8&revid=0B6xxO42VR_x3YkZRZUVaMVlZS1p4c25zM05hOUZpa2RzblhJPQ" alt="Grupo Endor" width="420" height="174" class="CToWUd a6T" tabindex="0">
-                    <img src="https://docs.google.com/uc?export=download&id=0B6xxO42VR_x3N3ZLNlNOVnRBUlU&revid=0B6xxO42VR_x3emg3UVNZKzdQM0gxeWlyOGhiLzZ2L1dzRnR3PQ" alt="Branding" class="branding">
+                    <div>
+                        <img src="https://docs.google.com/uc?export=download&id=0B6xxO42VR_x3TUw0b012X3ZMOG8&revid=0B6xxO42VR_x3YkZRZUVaMVlZS1p4c25zM05hOUZpa2RzblhJPQ" alt="Grupo Endor" width="420" height="174" class="CToWUd a6T" tabindex="0">
+                    </div>
+                    <div>
+                        <img src="https://docs.google.com/uc?export=download&id=0B6xxO42VR_x3N3ZLNlNOVnRBUlU&revid=0B6xxO42VR_x3emg3UVNZKzdQM0gxeWlyOGhiLzZ2L1dzRnR3PQ" alt="Branding" class="branding">
+                    </div>
                     <div class="backlink">¡Visítanos! <a href="https://grupoendor.com" class="link">grupoendor.com</a></div>
                     <!-- /.backlink -->
                 </footer>
