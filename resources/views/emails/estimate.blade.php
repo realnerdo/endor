@@ -26,6 +26,7 @@
                 margin-top: 0;
             }
             .signature{
+                padding-top: 2rem;
                 color: #222222;
             }
             .signature .logo{
@@ -89,8 +90,8 @@
 
                 <div class="name">
                     <span>{{ \Auth::user()->name }}</span>
-                    <span class="sep"> | </span>
-                    <small>{{ Auth::user()->job_title }}</small>
+                    {{-- <span class="sep"> | </span> --}}
+                    {{-- <small>{{ Auth::user()->job_title }}</small> --}}
                 </div>
                 <!-- /.name -->
 
