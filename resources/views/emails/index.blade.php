@@ -21,6 +21,7 @@
                             <th>Enviado a</th>
                             <th>Asunto</th>
                             <th>Mensaje</th>
+                            <th>Veces abierto</th>
                             <th>Fecha de apertura</th>
                             <th>Fecha de envío</th>
                         </tr>
@@ -34,8 +35,9 @@
                                 <td data-th="Enviado a">{{ $email->to }}</td>
                                 <td data-th="Asunto">{{ $email->subject }}</td>
                                 <td data-th="Mensaje">{{ $email->message }}</td>
+                                <td data-th="Veces abierto">{{ (is_null($email->opened_times)) ? 0 : $email->opened_times }}</td>
                                 <td data-th="Fecha de apertura">{{ $opened_at }}</td>
-                                <td data-th="Fecha de envío">{{ ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $email->created_at)->diffForHumans()) }}</td>
+                                <td data-th="Fecha de envío">{{ ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $email->created_at)->format('l j \\d\\e F Y - h:i:s A')) }}</td>
                             </tr>
                         @endforeach
                     </tbody>

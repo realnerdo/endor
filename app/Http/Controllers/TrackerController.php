@@ -12,5 +12,7 @@ class TrackerController extends Controller
     {
         if(is_null($email->opened_at))
             $email->update(['opened_at' => Carbon::now()]);
+        $counter = $email->opened_times;
+        $email->update(['opened_times' => $counter + 1]);
     }
 }
