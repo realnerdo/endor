@@ -14,6 +14,7 @@ class Email extends Model
         'to',
         'subject',
         'message',
+        'opened_times',
         'opened_at'
     ];
     public function estimate()
