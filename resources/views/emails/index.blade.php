@@ -28,7 +28,7 @@
                     <tbody>
                         @foreach ($emails as $email)
                             @php
-                                $opened_at = (is_null($email->opened_at)) ? 'Sin abrir' : ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $email->opened_at)->diffForHumans());
+                                $opened_at = (is_null($email->opened_at)) ? 'Sin abrir' : ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $email->opened_at)->format('l j \\d\\e F Y - h:i:s A'));
                             @endphp
                             <tr>
                                 <td data-th="Enviado a">{{ $email->to }}</td>
