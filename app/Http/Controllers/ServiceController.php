@@ -48,6 +48,8 @@ class ServiceController extends Controller
      */
     public function store(ServiceRequest $request)
     {
+        $price = str_replace(',', '', $request->input('price'));
+        $request->merge(['price' => $price]);
         $service = Service::create($request->all());
         foreach ($request->input('sections') as $section) {
             $service->sections()->create([
@@ -94,6 +96,8 @@ class ServiceController extends Controller
         foreach ($service->sections as $section) {
             Section::find($section->id)->delete();
         }
+        $price = str_replace(',', '', $request->input('price'));
+        $request->merge(['price' => $price]);
         $service->update($request->all());
         foreach ($request->input('sections') as $section) {
             $service->sections()->create([

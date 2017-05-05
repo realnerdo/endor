@@ -94,10 +94,11 @@ class EstimateController extends Controller
         $estimate = Auth::user()->estimates()->create($request->all());
 
         foreach ($request->input('services') as $key => $service) {
+            $price = str_replace(',', '', $service['price']);
             $estimate_service = $estimate->estimate_services()->create([
                 'title' => $service['title'],
                 'notes' => $service['notes'],
-                'price' => $service['price'],
+                'price' => $price,
                 'duration' => $service['duration'],
                 'offset' => $service['offset']
             ]);
@@ -245,10 +246,11 @@ class EstimateController extends Controller
         $estimate->update($request->all());
 
         foreach ($request->input('services') as $key => $service) {
+            $price = str_replace(',', '', $service['price']);
             $estimate_service = $estimate->estimate_services()->create([
                 'title' => $service['title'],
                 'notes' => $service['notes'],
-                'price' => $service['price'],
+                'price' => $price,
                 'duration' => $service['duration'],
                 'offset' => $service['offset']
             ]);
