@@ -18,7 +18,7 @@ class CreateEstimateServicesTable extends Migration
             $table->string('title');
             $table->text('content')->nullable(); // Delete
             $table->text('notes');
-            $table->float('price');
+            $table->float('price', 15, 2)->unsigned();
             $table->integer('duration');
             $table->integer('offset');
             $table->integer('estimate_id')->unsigned();

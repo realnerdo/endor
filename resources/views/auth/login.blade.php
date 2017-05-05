@@ -26,10 +26,10 @@
             {{ Form::submit('Entrar', ['class' => 'btn btn-green']) }}
         </div>
         <!-- /.form-group -->
-        <div class="form-group">
+        {{-- <div class="form-group">
             {{ Html::link(url('/password/reset'), '¿Olvidaste tu contraseña?', ['class' => 'link']) }}
         </div>
-        <!-- /.form-group -->
+        <!-- /.form-group --> --}}
     {{ Form::close() }}
 </main>
 <!-- /.auth -->
