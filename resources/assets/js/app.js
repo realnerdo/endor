@@ -338,7 +338,6 @@ $(function(){
     if(sections_list.length){
 
         function add_section_form(sections_list){
-            var sections_list = $('.sections_list');
 
             var section_form = sections_list.find('.section').first();
             var cloned = section_form.clone().find('input:text').val('').end().find('textarea').val('').end();

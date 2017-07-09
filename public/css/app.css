@@ -279,7 +279,6 @@ img {
 .auth .auth-form {
   -webkit-animation: auth 0.6s forwards cubic-bezier(0.87, -0.41, 0.19, 1.44);
   animation: auth 0.6s forwards cubic-bezier(0.87, -0.41, 0.19, 1.44);
-  background: -webkit-linear-gradient(rgba(52, 73, 94, 0.5), #34495e), url("../img/login-bg.jpg") top center/cover;
   background: linear-gradient(rgba(52, 73, 94, 0.5), #34495e), url("../img/login-bg.jpg") top center/cover;
   border-radius: 0.3571428571rem;
   box-shadow: 0 3px 14px 2px rgba(0, 0, 0, 0.3);
@@ -381,20 +380,17 @@ img {
 .sidebar .nav .list .item:hover, .sidebar .nav .list .item.active {
   background: rgba(0, 0, 0, 0.1);
   border-left: 4px solid #1abc9c;
-  -webkit-transition: all .1s ease-in-out;
   transition: all .1s ease-in-out;
 }
 
 .sidebar .nav .list .item:hover .link, .sidebar .nav .list .item.active .link {
   padding: .7rem;
   padding-left: 1rem;
-  -webkit-transition: all .1s ease-in-out;
   transition: all .1s ease-in-out;
 }
 
 .sidebar .nav .list .item:hover .link .typcn, .sidebar .nav .list .item.active .link .typcn {
   color: #1abc9c;
-  -webkit-transition: all .1s ease-in-out;
   transition: all .1s ease-in-out;
 }
 
@@ -937,7 +933,6 @@ img {
   opacity: 1;
   -webkit-transform: translate(-50%, 10%);
   transform: translate(-50%, 10%);
-  -webkit-transition: all 0.3s cubic-bezier(0.87, -0.41, 0.19, 1.44);
   transition: all 0.3s cubic-bezier(0.87, -0.41, 0.19, 1.44);
 }
 
@@ -3601,7 +3596,6 @@ template {
   border: 1px solid #aaa;
   border-radius: 4px;
   outline: 0;
-  background-image: -webkit-linear-gradient(top, #fff 50%, #eee 100%);
   background-image: linear-gradient(to bottom, #fff 50%, #eee 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0);
@@ -3638,7 +3632,6 @@ template {
   top: 1px;
   right: 1px;
   width: 20px;
-  background-image: -webkit-linear-gradient(top, #eee 50%, #ccc 100%);
   background-image: linear-gradient(to bottom, #eee 50%, #ccc 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFCCCCCC', GradientType=0);
@@ -3689,7 +3682,6 @@ template {
   border-top: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  background-image: -webkit-linear-gradient(top, #fff 0%, #eee 50%);
   background-image: linear-gradient(to bottom, #fff 0%, #eee 50%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0);
@@ -3699,7 +3691,6 @@ template {
   border-bottom: none;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  background-image: -webkit-linear-gradient(top, #eee 50%, #fff 100%);
   background-image: linear-gradient(to bottom, #eee 50%, #fff 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFFFFFFF', GradientType=0);
@@ -3832,13 +3823,13 @@ template {
 }
 
 /*!
- * Datepicker v0.5.0
+ * Datepicker v0.5.3
  * https://github.com/fengyuanchen/datepicker
  *
  * Copyright (c) 2014-2017 Fengyuan Chen
  * Released under the MIT license
  *
- * Date: 2017-02-11T13:41:05.813Z
+ * Date: 2017-06-15T11:00:53.699Z
  */
 .datepicker-container {
   font-size: 12px;
