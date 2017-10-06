@@ -254,14 +254,14 @@ $(function(){
                 name = input_price_name.replace('services[', ''),
                 index = name.replace('][price]', ''),
                 // textarea_content = $this.closest('.service').find('.service_content'),
-                hidden_notes = $this.closest('.service').find('.service_notes'),
+                input_notes = $this.closest('.service').find('.service_notes'),
                 sections_list = $this.closest('.service').find('.sections_list');
 
 
             $.get(base_url+'/servicios/getServiceByTitle/'+title, function(data){
                 input_price.val(data.price);
                 // // textarea_content.val(data.content);
-                hidden_notes.val(data.notes);
+		input_notes.val(data.notes);
                 add_estimate_sections(data.sections, sections_list, index);
                 calculate_total();
             });

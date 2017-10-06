@@ -114,6 +114,13 @@
                     </div>
                     <!-- /.form-group -->
                 </div><!-- /.col-3 -->
+		<div class="col-12">
+		    <div class="form-group">
+			{{ Form::label('services[0][notes]', 'Cláusulas de contratación', ['class' => 'label']) }}
+			{{ Form::textarea('services[0][notes]', null, ['size' => '10x10', 'class' => 'input autosizable service_notes']) }}
+		    </div>
+		    <!-- /.form-group -->
+		</div><!-- /.col-12 -->
                 <div class="row">
                     <div class="col-12">
                         <h3 class="title">Secciones</h3><!-- /.title -->
@@ -124,7 +131,6 @@
                     <div class="col-12">
                         <div class="buttons pr">
                             <button class="btn btn-blue add-section"><i class="typcn typcn-plus"></i> Añadir otra sección</button>
-                            {{ Form::hidden('services[0][notes]', null, ['class' => 'service_notes']) }}
                         </div>
                         <!-- /.buttons pr -->
                     </div>
@@ -165,6 +171,13 @@
                         </div>
                         <!-- /.form-group -->
                     </div><!-- /.col-3 -->
+		    <div class="col-12">
+			<div class="form-group">
+			    {{ Form::label('services['.$key.'][notes]', 'Cláusulas de contratación', ['class' => 'label']) }}
+			    {{ Form::textarea('services['.$key.'][notes]', $service->notes, ['size' => '10x10', 'class' => 'input autosizable service_notes']) }}
+			</div>
+			<!-- /.form-group -->
+		    </div><!-- /.col-12 -->
                     <div class="row">
                         <div class="col-12">
                             <h3 class="title">Secciones</h3><!-- /.title -->
@@ -210,7 +223,6 @@
                         <div class="form-group">
                             {{ Form::label('services['.$key.'][content]', 'Contenido', ['class' => 'label']) }}
                             {{ Form::textarea('services['.$key.'][content]', $service->content, ['size' => '10x10', 'class' => 'input autosizable service_content', 'id' => '', 'required']) }}
-                            {{ Form::hidden('services['.$key.'][notes]', $service->notes, ['class' => 'service_notes']) }}
                         </div>
                         <!-- /.form-group -->
                     </div><!-- /.col-12 --> --}}
