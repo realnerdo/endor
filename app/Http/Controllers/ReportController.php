@@ -54,6 +54,9 @@ class ReportController extends Controller
 
         $clients = Client::pluck('name', 'id');
         $clients = [0 => 'Todos'] + $clients->toArray();
+	$companies = Client::pluck('company', 'company');
+        $companies = [0 => 'Todas'] + $companies->toArray();
+	$companies = array_filter($companies);
         $users = User::pluck('name', 'id');
         $users = [0 => 'Todos'] + $users->toArray();
         $services = Service::pluck('title', 'title');
@@ -65,6 +68,7 @@ class ReportController extends Controller
             'values',
             'estimates',
             'clients',
+	    'companies',
             'users',
             'services',
             'statuses',
@@ -88,8 +92,14 @@ class ReportController extends Controller
             $showing .= ' hasta "' . $request->input('to') . '"';
         else
             $showing .= ' hasta "' . Carbon::today()->toDateString() . '"';
+	if($request->has('price_from'))
+	    $showing .= ' desde "$' . number_format($request->input('price_from'), 2, '.', ',') . '"';
+	if($request->has('price_to'))
+	    $showing .= ' hasta "$' . number_format($request->input('price_to'), 2, '.', ',') . '"';
         if($request->has('client_id'))
             $showing .= ' del cliente "' . $first->client->name . '"';
+	if($request->has('company'))
+	    $showing .= ' de la empresa "' . $request->input('company') . '"';
         if($request->has('user_id'))
             $showing .= ' del ejecutivo "' . $first->user->name . '"';
         if($request->has('service_title')){
@@ -108,6 +118,7 @@ class ReportController extends Controller
     				'Folio' => $estimate->folio,
     				'Fecha' => $estimate->created_at,
     				'Cliente' => $estimate->client->name,
+    				'Empresa' => $estimate->client->company,
     				'Empleado' => $estimate->user->name,
     				'Servicio' => $estimate->service,
     				'Estatus' => $estimate->status,
@@ -149,6 +160,10 @@ class ReportController extends Controller
                 $to = ($request->input('to') != '') ? $request->input('to') : Carbon::today();
                 $estimates = $estimates->where('created_at', '<=', $to);
             }
+    	    if($request->has('price_from') && $request->input('price_from') != '')
+		$estimates = $estimates->where('total', '>=', $request->input('price_from'));
+    	    if($request->has('price_to') && $request->input('price_to') != '')
+		$estimates = $estimates->where('total', '<=', $request->input('price_to'));
     	    if($request->has('client_id') && $request->input('client_id') != '')
     	        $estimates = $estimates->where('client_id', $request->input('client_id'));
     	    if($request->has('user_id') && $request->input('user_id') != '')
@@ -160,6 +175,24 @@ class ReportController extends Controller
     	    		$query->where('title', $request->input('service_title'));
     	    	});
     	    }
+	    if($request->has('company') && $request->input('company') != ''){
+		$clients = Client::where('company', $request->input('company'))->get();
+		if(!$clients->isEmpty()){
+		    $estimates->where(function($query) use ($clients){
+			$ci = 0;
+			foreach($clients as $client){
+			    if($ci){
+			        $query->orWhere('client_id', $client->id);
+			    } else {
+			        $query->where('client_id', $client->id);
+			    }
+			    $ci++;
+
+			}
+		    });
+		}
+	    }
+	    /* dd($estimates->toSql(), $estimates->getBindings()); */
             $result['all'] = $estimates->get();
     	    $result['paginated'] = $estimates->paginate(15);
     	}

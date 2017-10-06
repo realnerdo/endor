@@ -16,20 +16,38 @@
 		{{ Form::open(['url' => url('reportes'), 'class' => 'form search', 'method' => 'GET']) }}
 			<div class="col-3">
 				<div class="form-group">
-					{{ Form::label('from', 'Desde', ['class' => 'label']) }}
+					{{ Form::label('from', 'Desde fecha', ['class' => 'label']) }}
 					{{ Form::input('text', 'from', ($request->has('from')) ? $request->input('from') : null, ['class' => 'input datepicker whenever']) }}
 				</div><!-- /.form-group -->
 			</div><!-- /.col-3 -->
 			<div class="col-3">
 				<div class="form-group">
-					{{ Form::label('to', 'Hasta', ['class' => 'label']) }}
+					{{ Form::label('to', 'Hasta fecha', ['class' => 'label']) }}
 					{{ Form::input('text', 'to', ($request->has('to')) ? $request->input('to') : null, ['class' => 'input datepicker whenever']) }}
+				</div><!-- /.form-group -->
+			</div><!-- /.col-3 -->
+			<div class="col-3">
+				<div class="form-group">
+					{{ Form::label('price_from', 'Desde precio', ['class' => 'label']) }}
+					{{ Form::input('text', 'price_from', ($request->has('price_from')) ? $request->input('price_from') : null, ['class' => 'input']) }}
+				</div><!-- /.form-group -->
+			</div><!-- /.col-3 -->
+			<div class="col-3">
+				<div class="form-group">
+					{{ Form::label('price_to', 'Hasta precio', ['class' => 'label']) }}
+					{{ Form::input('text', 'price_to', ($request->has('price_to')) ? $request->input('price_to') : null, ['class' => 'input']) }}
 				</div><!-- /.form-group -->
 			</div><!-- /.col-3 -->
 			<div class="col-3">
 				<div class="form-group">
 					{{ Form::label('client_id', 'Cliente', ['class' => 'label']) }}
 					{{ Form::select('client_id', $clients, ($request->has('client_id')) ? $request->input('client_id') : null, ['class' => 'select2', 'data-placeholder' => 'Cliente']) }}
+				</div><!-- /.form-group -->
+			</div><!-- /.col-3 -->
+			<div class="col-3">
+				<div class="form-group">
+					{{ Form::label('company', 'Empresa', ['class' => 'label']) }}
+					{{ Form::select('company', $companies, ($request->has('company')) ? $request->input('company') : null, ['class' => 'select2', 'data-placeholder' => 'Empresa']) }}
 				</div><!-- /.form-group -->
 			</div><!-- /.col-3 -->
 			<div class="col-3">
@@ -50,12 +68,12 @@
 					{{ Form::select('status', $statuses, ($request->has('status')) ? $request->input('status') : null, ['class' => 'select2', 'data-placeholder' => 'Estatus']) }}
 				</div><!-- /.form-group -->
 			</div><!-- /.col-3 -->
-			<div class="col-6">
+			<div class="col-3">
 				<div class="form-group">
 					{{ Form::label('submit', 'Filtrar', ['class' => 'label']) }}
 					{{ Form::submit('Aceptar', ['class' => 'btn btn-green']) }}
 				</div><!-- /.form-group -->
-			</div><!-- /.col-6 -->
+			</div><!-- /.col-3 -->
 		{{ Form::close() }}
 	</div><!-- /.row -->
 	<div class="row">
@@ -74,8 +92,14 @@
 						$showing .= ' hasta <b>"' . $request->input('to') . '"</b>';
 					else
 						$showing .= ' hasta <b>hoy ("'. \Carbon\Carbon::today()->toDateString() .'")</b>';
+					if($request->has('price_from'))
+						$showing .= ' desde <b>$'. number_format($request->input('price_from'), 2, '.', ',') . '</b>';
+					if($request->has('price_to'))
+						$showing .= ' hasta <b>$'. number_format($request->input('price_to'), 2, '.', ',') . '</b>';
 					if($request->has('client_id'))
 						$showing .= ' del cliente <b>"' . $first->client->name . '"</b>';
+					if($request->has('company'))
+						$showing .= ' de la empresa <b>"' . $request->input('company') . '"</b>';
 					if($request->has('user_id'))
 						$showing .= ' del ejecutivo <b>"' . $first->user->name . '"</b>';
 					if($request->has('service_title')){
@@ -122,6 +146,7 @@
 				            <th>Folio</th>
 				            <th>Fecha</th>
 				            <th>Cliente</th>
+				            <th>Empresa</th>
 				            <th>Ejecutivo</th>
 				            <th>Servicio</th>
 				            <th>Estatus</th>
@@ -152,6 +177,7 @@
 				                <td data-th="Cliente">
 									<a href="#" class="modal-trigger link" data-modal="client-modal" data-id="{{ $estimate->client->id }}">{{ $estimate->client->name }}</a>
 								</td>
+						<td data-th="Empresa">{{ $estimate->client->company  }}</td>
 				                <td data-th="Ejecutivo">{{ $estimate->user->name }}</td>
 				                <td data-th="Servicio">{{ $estimate->service }}</td>
 				                <td data-th="Estatus">

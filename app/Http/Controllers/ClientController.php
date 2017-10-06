@@ -44,6 +44,7 @@ class ClientController extends Controller
             foreach ($results as $result) {
                 Client::create([
                     'name' => (!is_null($result->name)) ? $result->name : 'Sin nombre',
+                    'company' => (!is_null($result->company)) ? $result->company : 'Sin empresa',
                     'email' => (!is_null($result->email)) ? $result->email : 'Sin correo',
                     'phone' => (!is_null($result->phone)) ? $result->phone : 'Sin teléfono'
                 ]);
