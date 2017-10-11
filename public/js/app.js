@@ -115,8 +115,8 @@ $(function(){
         function show_modal(modal_id, resource_id, client_email) {
             var modal = $('#'+modal_id),
                 form = modal.find('.form'),
-                action = form.attr('action')
-                action_id = action.replace('{id}', resource_id);
+                action = (form.length) ? form.attr('action') : null,
+                action_id = (action) ? action.replace('{id}', resource_id) : null;
 
             if(form.length)
                 form.attr('action', action_id);
@@ -128,6 +128,9 @@ $(function(){
                 $.get(base_url + '/clientes/getClientById/'+resource_id, function(data){
                     var p_name = $('<p>', {
                             html: '<b>Nombre:</b> '+data.name
+                        }),
+                        p_company = $('<p>', {
+                            html: '<b>Empresa:</b> '+data.company
                         }),
                         p_phone = $('<p>', {
                             html: '<b>Teléfono:</b> '+data.phone
@@ -141,6 +144,7 @@ $(function(){
                     var content = modal.find('.content');
                     content.empty();
                     content.append(p_name);
+                    content.append(p_company);
                     content.append(p_phone);
                     content.append(p_email);
                     content.append(p_estimates);

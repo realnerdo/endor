@@ -17,6 +17,7 @@ Route::get('/', 'HomeController@index');
 
 // Cotizaciones
 Route::get('cotizaciones', 'EstimateController@index');
+Route::get('cotizaciones/exportExcel', 'EstimateController@exportExcel');
 Route::post('cotizaciones', 'EstimateController@store');
 Route::get('cotizaciones/nuevo', 'EstimateController@create');
 Route::patch('cotizaciones/{estimate}', 'EstimateController@update');
