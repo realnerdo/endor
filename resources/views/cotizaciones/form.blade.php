@@ -31,6 +31,8 @@
         <!-- /.form-group -->
     </div>
     <!-- /.col-3 -->
+</div><!-- /.row -->
+<div class="row">
     <div class="col-3">
         <div class="form-group">
             {{ Form::label('payment_type', 'Tipo de inversión', ['class' => 'label']) }}
@@ -59,6 +61,8 @@
             {{ Form::input('text', 'total', null, ['class' => 'input', 'required', 'readonly']) }}
         </div><!-- /.form-group -->
     </div><!-- /.col-3 -->
+</div><!-- /.row -->
+<div class="row">
     <div class="col-3">
         <div class="form-group">
             {{ Form::label('origin', 'Origen', ['class' => 'label']) }}
