@@ -216,7 +216,6 @@
                         <div class="col-12">
                             <div class="buttons pr">
                                 <button type="button" class="btn btn-blue add-section"><i class="typcn typcn-plus"></i> Añadir otra sección</button>
-                                {{ Form::hidden('services['.$key.'][notes]', $service->notes, ['class' => 'service_notes']) }}
                             </div>
                             <!-- /.buttons pr -->
                         </div>
