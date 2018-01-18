@@ -159,6 +159,15 @@ $(function(){
     // Cotizador
     var select_client_id = $('#client_id');
     if(select_client_id.length){
+
+	var estimate_form = $('.estimate_form');
+	estimate_form.on('keyup keypress', function(e){
+	    var keyCode = e.keyCode || e.which;
+	    if(keyCode === 13){
+		e.preventDefault();
+	    }
+	});
+
         var client_id = $('#client_id'),
             phone = $('#phone'),
             email = $('#email');
