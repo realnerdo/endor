@@ -161,11 +161,8 @@ $(function(){
     if(select_client_id.length){
 
 	var estimate_form = $('.estimate_form');
-	estimate_form.on('keyup keypress', function(e){
-	    var keyCode = e.keyCode || e.which;
-	    if(keyCode === 13){
-		e.preventDefault();
-	    }
+	$(document).on("keypress", ":input:not(textarea)", function(event) {
+	    return event.keyCode != 13;
 	});
 
         var client_id = $('#client_id'),

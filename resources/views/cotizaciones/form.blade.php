@@ -134,7 +134,7 @@
                     <!-- /.sections_list -->
                     <div class="col-12">
                         <div class="buttons pr">
-                            <button class="btn btn-blue add-section"><i class="typcn typcn-plus"></i> Añadir otra sección</button>
+                            <button type="button" class="btn btn-blue add-section"><i class="typcn typcn-plus"></i> Añadir otra sección</button>
                         </div>
                         <!-- /.buttons pr -->
                     </div>
@@ -205,7 +205,7 @@
                                     <!-- /.col-12 -->
                                     @if($k != 0)
                                         <div class="col-12">
-                                            <button class="btn btn-red delete-section">Eliminar sección</button>
+                                            <button type="button" class="btn btn-red delete-section">Eliminar sección</button>
                                         </div><!-- /.col-12 -->
                                     @endif
                                 </div>
@@ -215,7 +215,7 @@
                         <!-- /.sections_list -->
                         <div class="col-12">
                             <div class="buttons pr">
-                                <button class="btn btn-blue add-section"><i class="typcn typcn-plus"></i> Añadir otra sección</button>
+                                <button type="button" class="btn btn-blue add-section"><i class="typcn typcn-plus"></i> Añadir otra sección</button>
                                 {{ Form::hidden('services['.$key.'][notes]', $service->notes, ['class' => 'service_notes']) }}
                             </div>
                             <!-- /.buttons pr -->
@@ -232,7 +232,7 @@
                     </div><!-- /.col-12 --> --}}
                     @if($key != 0)
                         <div class="col-12">
-                            <button class="btn btn-red delete-service">Eliminar servicio</button>
+                            <button type="button" class="btn btn-red delete-service">Eliminar servicio</button>
                         </div><!-- /.col-12 -->
                     @endif
                 </div><!-- /.service -->
@@ -244,7 +244,7 @@
 <div class="row">
     <div class="col-12">
         <div class="buttons pr">
-            <button class="btn btn-blue" id="add-service"><i class="typcn typcn-plus"></i> Añadir otro servicio</button>
+            <button type="button" class="btn btn-blue" id="add-service"><i class="typcn typcn-plus"></i> Añadir otro servicio</button>
             <button type="submit" class="btn btn-green"><i class="typcn typcn-printer"></i> Guardar</button>
         </div>
         <!-- /.tools -->
