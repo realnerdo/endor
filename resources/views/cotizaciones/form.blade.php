@@ -203,7 +203,7 @@
                                         <!-- /.form-group -->
                                     </div>
                                     <!-- /.col-12 -->
-                                    @if($k != 0)
+				    @if($service->estimate_sections->count() > 1)
                                         <div class="col-12">
                                             <button type="button" class="btn btn-red delete-section">Eliminar sección</button>
                                         </div><!-- /.col-12 -->

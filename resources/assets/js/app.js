@@ -247,7 +247,7 @@ $(function(){
 
                 section_div.append(col_section_div);
 
-                if(i != 0){
+                if(sections.length > 1){
                     section_div.append(col_delete_div);
                 }
 
@@ -394,7 +394,13 @@ $(function(){
         });
 
         $body.on('click', '.delete-section', function(){
-            var section = $(this).closest('.section').remove();
+	    var sections = $(this).closest('.sections_list').find('.section');
+	    console.log(sections.length);
+	    if(sections.length == 2){
+		console.log(sections.first());
+	    }
+
+	    $(this).closest('.section').remove();
         });
     }
 
