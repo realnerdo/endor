@@ -403,9 +403,6 @@ $(function(){
 
         function add_section_form(sections_list){
 
-            var section_form = sections_list.find('.section').first();
-            var cloned = section_form.clone().find('input:text').val('').end().find('textarea').val('').end();
-
             var div_delete = $('<div>', {
                 class: 'col-12',
                 html: $('<button>', {
@@ -413,7 +410,20 @@ $(function(){
                     class: 'btn btn-red delete-section'
                 })
             });
-            cloned.append(div_delete);
+
+            var section_form = sections_list.find('.section').first();
+
+	    if(!section_form.find('.delete-section').length){
+		section_form.append(div_delete);
+	    }
+
+            var cloned = section_form.clone().find('input:text').val('').end().find('textarea').val('').end();
+
+	    console.log(cloned.find('.delete-section').length);
+
+	    if(!cloned.find('.delete-section').length){
+		cloned.append(div_delete);
+	    }
 
             cloned.appendTo(sections_list);
 
@@ -448,13 +458,17 @@ $(function(){
         });
 
         $body.on('click', '.delete-section', function(){
-	    var sections = $(this).closest('.sections_list').find('.section');
-	    console.log(sections.length);
-	    if(sections.length == 2){
-		console.log(sections.first());
+	    var $this = $(this),
+		service = $this.closest('.service');
+
+	    $this.closest('.section').remove();
+
+	    var sections = service.find('.sections_list').find('.section');
+
+	    if(sections.length == 1){
+		sections.first().find('.delete-section').closest('.col-12').remove();
 	    }
 
-	    $(this).closest('.section').remove();
         });
     }
 
