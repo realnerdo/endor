@@ -132,6 +132,7 @@ class EstimateController extends Controller
 
         if(!is_numeric($request->input('client_id'))){
             $request->merge(['name' => $request->input('client_id')]);
+            $request->merge(['company' => $request->input('client_id')]);
             $client = Client::create($request->all());
             $request->merge(['client_id' => $client->id]);
         }
