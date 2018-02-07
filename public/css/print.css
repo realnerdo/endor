@@ -38,6 +38,7 @@ img {
 
 body {
   background: #fff;
+  text-rendering: geometricPrecision;
 }
 
 #estimate {
