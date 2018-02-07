@@ -32,7 +32,7 @@
 <body>
 	<footer class="footer">
 		<p>CDMX: 01 (55) 4164-8860</p>
-		<p>Mérida: 01 (999) 406-01-47</p>
+		<p>Mérida: 01 (999) 406-01-47</p>
 		<p>www.grupoendor.com</p>
 	</footer><!-- /.footer -->
 </body>
