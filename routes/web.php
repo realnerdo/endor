@@ -14,6 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
+Route::get('home', 'HomeController@index');
 
 // Cotizaciones
 Route::get('cotizaciones', 'EstimateController@index');
