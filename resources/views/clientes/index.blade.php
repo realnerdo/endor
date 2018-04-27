@@ -41,7 +41,7 @@
                                 <td data-th="Correo electrónico"><a href="mailto:{{ $client->email }}" class="link">{{ $client->email }}</a></td>
                                 <td data-th="Teléfono">{{ $client->phone }}</td>
                                 <td data-th="Fecha de registro">{{ $client->created_at }}</td>
-                                <td data-th="Cotizaciones"><a href="{{ url('cotizaciones') }}" class="link">{{ $client->estimates()->count() }}</a></td>
+                                <td data-th="Cotizaciones"><a href="{{ url('cotizaciones?client_id='.$client->id) }}" class="link">{{ $client->estimates()->count() }}</a></td>
                                 <td data-th="Opciones">
                                     <span href="#" class="dropdown">
                                         <i class="typcn typcn-social-flickr"></i>
@@ -51,7 +51,7 @@
                                             </li>
                                             <!-- /.item -->
                                             <li class="item">
-                                                <a href="{{ url('cotizaciones') }}" class="link"><i class="typcn typcn-clipboard"></i> Cotizaciones</a>
+                                                <a href="{{ url('cotizaciones?client_id='.$client->id) }}" class="link"><i class="typcn typcn-clipboard"></i> Cotizaciones</a>
                                             </li>
                                             <!-- /.item -->
                                             <li class="item">
