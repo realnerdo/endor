@@ -41,6 +41,10 @@
                                             </li>
                                             <!-- /.item -->
                                             <li class="item">
+                                                <a href="{{ url('cotizaciones?service_title='.$service->title) }}" class="link"><i class="typcn typcn-clipboard"></i> Cotizaciones</a>
+                                            </li>
+                                            <!-- /.item -->
+                                            <li class="item">
                                                 {{ Form::open(['url' => url('servicios', $service->id), 'method' => 'DELETE', 'class' => 'delete-form']) }}
                                                     <button type="submit" class="link"><i class="typcn typcn-delete"></i> Eliminar</button>
                                                 {{ Form::close() }}

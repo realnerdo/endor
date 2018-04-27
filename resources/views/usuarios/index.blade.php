@@ -49,7 +49,7 @@
                                             </li>
                                             <!-- /.item -->
                                             <li class="item">
-                                                <a href="{{ url('cotizaciones') }}" class="link"><i class="typcn typcn-clipboard"></i> Cotizaciones</a>
+                                                <a href="{{ url('cotizaciones?user_id='.$user->id) }}" class="link"><i class="typcn typcn-clipboard"></i> Cotizaciones</a>
                                             </li>
                                             <!-- /.item -->
                                             <li class="item">
