@@ -48,7 +48,12 @@
             @if ($estimate->payment_type == 'Normal')
                 <div class="calendar">
                     @php
-                        $days = $estimate->estimate_services->last()->duration + $estimate->estimate_services->last()->offset;
+                        $days = 0;
+                        foreach($estimate->estimate_services as $service):
+                            $service_days = $service->duration + $service->offset;
+                            if($service_days > $days)
+                                $days = $service_days;
+                        endforeach;
                     @endphp
                     <h3 class="title">Calendarización General</h3><!-- /.title -->
                     <h4 class="subtitle">Tiempo de realización: <span>{{ $days }} días hábiles</span></h4><!-- /.subtitle -->
