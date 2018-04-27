@@ -151,6 +151,7 @@
 				            <th>Servicio</th>
 				            <th>Estatus</th>
 				            <th>Total</th>
+				            <th>Opciones</th>
 				        </tr>
 				    </thead>
 				    <tbody>
@@ -180,9 +181,20 @@
 						<td data-th="Empresa">{{ $estimate->client->company  }}</td>
 				                <td data-th="Ejecutivo">{{ $estimate->user->name }}</td>
 				                <td data-th="Servicio">{{ $estimate->service }}</td>
-				                <td data-th="Estatus">
-				                	<span class="badge badge-{{ $badge_color }}">{{ $estimate->status }}</span>
-				                </td>
+                                <td data-th="Estatus">
+                                    @if (!$estimate->discount)
+                                        @php
+                                            unset($statuses['Vendida con descuento']);
+                                        @endphp
+                                    @else
+                                        @php
+                                            $statuses['Vendida con descuento'] = 'Vendida con descuento';
+                                        @endphp
+                                    @endif
+                                    {{ Form::open(['url' => 'cotizaciones/' . $estimate->id . '/changeStatus', 'class' => 'change-status-form']) }}
+                                        {{ Form::select('status', $statuses, $estimate->status, ['class' => 'select2 change-status', 'data-placeholder' => 'Cambiar estatus']) }}
+                                    {{ Form::close() }}
+                                </td>
 				                <td data-th="Total">
 									@if ($estimate->discount)
 										<span class="price discount"><i class="typcn typcn-tag"></i>${{ number_format((float) $estimate->discount, 2, '.', ',') }}</span>
@@ -190,6 +202,36 @@
 									@endif
                                     <span class="price">${{ number_format((float) $estimate->total, 2, '.', ',') }}</span>
 								</td>
+                                <td data-th="Opciones">
+                                    <span href="#" class="dropdown">
+                                        <i class="typcn typcn-social-flickr"></i>
+                                        <ul class="list">
+                                            <li class="item">
+                                                <a href="{{ url('cotizaciones/'.$estimate->id.'/editar') }}" class="link"><i class="typcn typcn-edit"></i> Editar</a>
+                                            </li>
+                                            <!-- /.item -->
+                                            <li class="item">
+                                                <a href="{{ url('cotizaciones/'.$estimate->id.'/download') }}" class="link"><i class="typcn typcn-download"></i> Descargar</a>
+                                            </li>
+                                            <!-- /.item -->
+                                            <li class="item">
+                                                <a href="{{ url('cotizaciones/'.$estimate->id.'/pdf') }}" class="link" target="_blank"><i class="typcn typcn-printer"></i> Imprimir</a>
+                                            </li>
+                                            <!-- /.item -->
+                                            <li class="item">
+                                                <a href="#" class="link modal-trigger" data-modal="send-mail" data-id="{{ $estimate->id }}" data-email="{{ $estimate->client->email }}"><i class="typcn typcn-mail"></i> Enviar correo</a>
+                                            </li>
+                                            <!-- /.item -->
+                                            <li class="item">
+                                                {{ Form::open(['url' => url('cotizaciones', $estimate->id), 'method' => 'DELETE', 'class' => 'delete-form']) }}
+                                                    <button type="submit" class="link"><i class="typcn typcn-delete"></i> Eliminar</button>
+                                                {{ Form::close() }}
+                                            </li>
+                                            <!-- /.item -->
+                                        </ul>
+                                        <!-- /.list -->
+                                    </span><!-- /.dropdown -->
+                                </td>
 				            </tr>
 				        @endforeach
 				    </tbody>
