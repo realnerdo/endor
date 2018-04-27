@@ -141,6 +141,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $request->request->remove('status');
+                        @endphp
                         @foreach ($estimates as $estimate)
                             <tr>
                                 <td data-th="Folio">{{ $estimate->folio }}</td>
@@ -161,6 +164,9 @@
                                             $statuses['Vendida con descuento'] = 'Vendida con descuento';
                                         @endphp
                                     @endif
+                                    @php
+                                        unset($statuses[0]);
+                                    @endphp
                                     {{ Form::open(['url' => 'cotizaciones/' . $estimate->id . '/changeStatus', 'class' => 'change-status-form']) }}
                                         {{ Form::select('status', $statuses, $estimate->status, ['class' => 'select2 change-status', 'data-placeholder' => 'Cambiar estatus']) }}
                                     {{ Form::close() }}
