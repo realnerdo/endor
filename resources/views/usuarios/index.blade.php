@@ -39,7 +39,7 @@
                                 <td data-th="Usuario">{{ $user->username }}</td>
                                 <td data-th="Correo electrónico"><a href="mailto:{{ $user->email }}" class="link">{{ $user->email }}</a></td>
                                 <td data-th="Registro">{{ ucfirst(\Date::createFromFormat('Y-m-d H:i:s', $user->created_at)->diffForHumans()) }}</td>
-                                <td data-th="Cotizaciones"><a href="{{ url('cotizaciones') }}" class="link">{{ $user->estimates()->count() }}</a></td>
+                                <td data-th="Cotizaciones"><a href="{{ url('cotizaciones?user_id='.$user->id) }}" class="link">{{ $user->estimates()->count() }}</a></td>
                                 <td data-th="Opciones">
                                     <span href="#" class="dropdown">
                                         <i class="typcn typcn-social-flickr"></i>
