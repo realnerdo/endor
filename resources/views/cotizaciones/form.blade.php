@@ -71,6 +71,14 @@
         <!-- /.form-group -->
     </div>
     <!-- /.col-3 -->
+    @if (Auth::user()->role == 'admin')
+        <div class="col-3">
+            <div class="form-group">
+                {{ Form::label('user_id', 'Firma', ['class' => 'label']) }}
+                {{ Form::select('user_id', $users, null, ['class' => 'select2', 'data-placeholder' => 'Firma']) }}
+            </div><!-- /.form-group -->
+        </div><!-- /.col-3 -->
+    @endif
     <div class="col-12">
         <div class="form-group">
             {{ Form::label('description', 'Descripción', ['class' => 'label']) }}

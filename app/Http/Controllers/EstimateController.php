@@ -177,7 +177,7 @@ class EstimateController extends Controller
         $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento' => 'Vendida con descuento', 'No vendida' => 'No vendida'];
         $origins = ['Google' => 'Google', 'LinkedIn' => 'LinkedIn', 'Llamada' => 'Llamada', 'Referido' => 'Referido'];
         $payment_types = ['Normal' => 'Normal', 'Mensual' => 'Mensual'];
-        $users = User::pluck('name', 'id');
+        $users = User::pluck('name', 'id')->toArray();
         return view('cotizaciones.edit', compact('estimate', 'clients', 'statuses', 'origins', 'payment_types', 'services', 'users'));
     }
 

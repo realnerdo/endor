@@ -24,7 +24,8 @@ class Estimate extends Model
         'description',
         'total',
         'discount',
-        'client_id'
+        'client_id',
+        'user_id'
     ];
 
     public function client()
