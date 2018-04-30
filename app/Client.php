@@ -11,7 +11,7 @@ class Client extends Model
      * The attributes that are mass assignable.
      * @var array
      */
-    protected $fillable = ['name', 'company', 'email', 'phone'];
+    protected $fillable = ['name', 'company', 'email', 'phone', 'origin'];
 
     public function estimates()
     {

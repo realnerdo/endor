@@ -64,7 +64,8 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('clientes.create');
+        $origins = ['Google' => 'Google', 'LinkedIn' => 'LinkedIn', 'Llamada' => 'Llamada', 'Referido' => 'Referido'];
+        return view('clientes.create', compact('origins'));
     }
 
     /**
@@ -100,7 +101,8 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return view('clientes.edit', compact('client'));
+        $origins = ['Google' => 'Google', 'LinkedIn' => 'LinkedIn', 'Llamada' => 'Llamada', 'Referido' => 'Referido'];
+        return view('clientes.edit', compact('client', 'origins'));
     }
 
     /**

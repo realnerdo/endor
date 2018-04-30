@@ -66,7 +66,7 @@
     <div class="col-3">
         <div class="form-group">
             {{ Form::label('origin', 'Origen', ['class' => 'label']) }}
-            {!! Form::select('origin', $origins, null, ['class' => 'select2', 'data-placeholder' => 'Origen']) !!}
+            {!! Form::select('origin', $origins, ($estimate->client) ? $estimate->client->origin : null, ['class' => 'select2', 'data-placeholder' => 'Origen']) !!}
         </div>
         <!-- /.form-group -->
     </div>

@@ -19,6 +19,11 @@
 </div>
 <!-- /.form-group -->
 <div class="form-group">
+    {{ Form::label('origin', 'Origen', ['class' => 'label']) }}
+    {{ Form::select('origin', $origins, null, ['class' => 'select2']) }}
+</div>
+<!-- /.form-group -->
+<div class="form-group">
     {{ Form::submit('Guardar', ['class' => 'btn btn-green']) }}
     {{ Html::link(url('clientes'), 'Cancelar', ['class' => 'btn btn-red']) }}
 </div>

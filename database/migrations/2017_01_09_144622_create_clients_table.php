@@ -19,6 +19,7 @@ class CreateClientsTable extends Migration
             $table->string('email');
             $table->string('company');
             $table->string('phone');
+            $table->enum('origin', ['Google', 'LinkedIn', 'Llamada', 'Referido'])->default('Google');
             $table->timestamps();
         });
     }

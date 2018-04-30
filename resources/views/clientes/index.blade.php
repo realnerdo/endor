@@ -26,6 +26,7 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Empresa</th>
+                            <th>Origen</th>
                             <th>Correo electrónico</th>
                             <th>Teléfono</th>
                             <th>Fecha de registro</th>
@@ -38,6 +39,7 @@
                             <tr>
                                 <td data-th="Nombre">{{ $client->name }}</td>
                                 <td data-th="Empresa">{{ $client->company }}</td>
+                                <td data-th="Origen">{{ $client->origin }}</td>
                                 <td data-th="Correo electrónico"><a href="mailto:{{ $client->email }}" class="link">{{ $client->email }}</a></td>
                                 <td data-th="Teléfono">{{ $client->phone }}</td>
                                 <td data-th="Fecha de registro">{{ $client->created_at }}</td>

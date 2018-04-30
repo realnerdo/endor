@@ -167,13 +167,15 @@ $(function(){
 
         var client_id = $('#client_id'),
             phone = $('#phone'),
-            email = $('#email');
+            email = $('#email'),
+            origin = $('#origin');
 
         client_id.on('change', function(){
             var id = $(this).val();
             $.get(base_url+'/clientes/getClientById/'+id, function(data){
                 phone.val(data.phone);
                 email.val(data.email);
+                origin.val(data.origin).trigger('change');
             });
         });
 
