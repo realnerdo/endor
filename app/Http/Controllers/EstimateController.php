@@ -101,7 +101,7 @@ class EstimateController extends Controller
         $services = Service::pluck('title', 'title');
         $services = [''=>''] + $services->toArray();
         $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento' => 'Vendida con descuento', 'No vendida' => 'No vendida'];
-        $origins = ['Google' => 'Google', 'LinkedIn' => 'LinkedIn', 'Llamada' => 'Llamada', 'Referido' => 'Referido'];
+        $origins = ['Web' => 'Web', 'Prospección' => 'Prospección', 'Llamada' => 'Llamada', 'Referido' => 'Referido', 'LinkedIn' => 'LinkedIn'];
         $payment_types = ['Normal' => 'Normal', 'Mensual' => 'Mensual'];
         $users = User::pluck('name', 'id');
         return view('cotizaciones.create', compact('clients', 'services', 'statuses', 'origins', 'payment_types', 'users', 'setting'));
@@ -175,7 +175,7 @@ class EstimateController extends Controller
         $services = Service::pluck('title', 'title');
         $services = [''=>''] + $services->toArray();
         $statuses = ['En espera' => 'En espera', 'Vendida' => 'Vendida', 'Vendida con descuento' => 'Vendida con descuento', 'No vendida' => 'No vendida'];
-        $origins = ['Google' => 'Google', 'LinkedIn' => 'LinkedIn', 'Llamada' => 'Llamada', 'Referido' => 'Referido'];
+        $origins = ['Web' => 'Web', 'Prospección' => 'Prospección', 'Llamada' => 'Llamada', 'Referido' => 'Referido', 'LinkedIn' => 'LinkedIn'];
         $payment_types = ['Normal' => 'Normal', 'Mensual' => 'Mensual'];
         $users = User::pluck('name', 'id')->toArray();
         return view('cotizaciones.edit', compact('estimate', 'clients', 'statuses', 'origins', 'payment_types', 'services', 'users'));

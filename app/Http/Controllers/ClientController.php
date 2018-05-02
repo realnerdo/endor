@@ -99,7 +99,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $origins = ['Google' => 'Google', 'LinkedIn' => 'LinkedIn', 'Llamada' => 'Llamada', 'Referido' => 'Referido'];
+        $origins = ['Web' => 'Web', 'Prospección' => 'Prospección', 'Llamada' => 'Llamada', 'Referido' => 'Referido', 'LinkedIn' => 'LinkedIn'];
         return view('clientes.create', compact('origins'));
     }
 
@@ -136,7 +136,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        $origins = ['Google' => 'Google', 'LinkedIn' => 'LinkedIn', 'Llamada' => 'Llamada', 'Referido' => 'Referido'];
+        $origins = ['Web' => 'Web', 'Prospección' => 'Prospección', 'Llamada' => 'Llamada', 'Referido' => 'Referido', 'LinkedIn' => 'LinkedIn'];
         return view('clientes.edit', compact('client', 'origins'));
     }
 
