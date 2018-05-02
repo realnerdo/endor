@@ -329,7 +329,7 @@ class EstimateController extends Controller
     {
         $estimate->delete();
         session()->flash('flash_message', 'Se ha eliminado la cotización');
-        return redirect('cotizaciones');
+        return redirect()->back();
     }
 
     public function exportExcel(Request $request)
