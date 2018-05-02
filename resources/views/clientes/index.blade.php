@@ -4,7 +4,10 @@
 @section('sectionTitle', 'Clientes')
 @section('add')
     <div class="buttons pr">
-        <a href="{{ url('clientes/nuevo') }}" class="btn btn-blue add"><i class="typcn typcn-plus"></i> Nuevo cliente</a>
+        <a href="{{ url('clientes/nuevo') }}" class="btn btn-blue add pr"><i class="typcn typcn-plus"></i> Nuevo cliente</a>
+	@unless($clients->isEmpty())
+	    <a href="{{ url('clientes/exportExcel' . str_replace(url()->current(), '', url()->full())) }}" class="btn btn-green pr">Exportar a Excel</a>
+	@endunless
     </div>
     <!-- /.buttons -->
 @endsection

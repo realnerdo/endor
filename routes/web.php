@@ -31,6 +31,7 @@ Route::post('cotizaciones/{estimate}/changeStatus', 'EstimateController@changeSt
 
 // Clientes
 Route::get('clientes', 'ClientController@index');
+Route::get('clientes/exportExcel', 'ClientController@exportExcel');
 Route::post('clientes', 'ClientController@store');
 Route::get('clientes/nuevo', 'ClientController@create');
 Route::patch('clientes/{client}', 'ClientController@update');

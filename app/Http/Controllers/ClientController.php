@@ -58,6 +58,41 @@ class ClientController extends Controller
     }
 
     /**
+     * Export clients to excel file
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function exportExcel(){
+        $clients = Client::all();
+
+        if(!$clients->isEmpty()){
+
+            $title = 'Clientes';
+
+    		foreach ($clients as $client) {
+    			$array[] = [
+    				'Nombre' => $client->name,
+    				'Empresa' => $client->company,
+    				'Origen' => $client->origin,
+    				'Correo electrónico' => $client->email,
+    				'Teléfono' => $client->phone,
+                    'Fecha de registro' => $client->created_at
+    			];
+    		}
+
+            $xls = Excel::create($title . ' ' . time(), function($excel) use ($title, $array) {
+                $excel->setTitle($title);
+                $excel->sheet($title, function($sheet) use ($array) {
+                    $sheet->fromArray($array);
+                });
+            });
+            return $xls->download('xls');
+        }
+    	return abort(404);
+
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
