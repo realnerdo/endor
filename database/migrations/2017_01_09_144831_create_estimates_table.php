@@ -24,7 +24,7 @@ class CreateEstimatesTable extends Migration
             $table->float('total')->nullable();
             $table->float('discount')->nullable();
             $table->integer('client_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('client_id')
@@ -33,7 +33,8 @@ class CreateEstimatesTable extends Migration
 
             $table->foreign('user_id')
                     ->references('id')
-                    ->on('users');
+                    ->on('users')
+                    ->onDelete('set null');
         });
     }
 
