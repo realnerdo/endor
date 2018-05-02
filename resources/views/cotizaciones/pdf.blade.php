@@ -193,14 +193,16 @@
 
             <footer class="footer">
                 <div class="signatures">
-                    <div class="employee person {{ is_null($estimate->user->picture) ? 'empty' : '' }}">
-                        @if(!is_null($estimate->user->picture))
-                            <div class="signature">
-                                <img src="{{ asset('storage/'.$estimate->user->picture->url) }}" alt="Firma" class="img">
-                            </div><!-- /.signature -->
-                        @endif
-                        <span class="name">{{ $estimate->user->name }}</span>
-                    </div><!-- /.employee -->
+                    @if ($estimate->user)
+                        <div class="employee person {{ is_null($estimate->user->picture) ? 'empty' : '' }}">
+                                @if (!is_null($estimate->user->picture))
+                                    <div class="signature">
+                                        <img src="{{ asset('storage/'.$estimate->user->picture->url) }}" alt="Firma" class="img">
+                                    </div><!-- /.signature -->
+                                @endif
+                                <span class="name">{{ $estimate->user->name }}</span>
+                        </div><!-- /.employee -->
+                    @endif
                     <div class="client person empty">
                         <span class="name">{{ $estimate->client->name }}</span>
                     </div><!-- /.client -->

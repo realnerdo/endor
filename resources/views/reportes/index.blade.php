@@ -182,7 +182,7 @@
 									<a href="#" class="modal-trigger link" data-modal="client-modal" data-id="{{ $estimate->client->id }}">{{ $estimate->client->name }}</a>
 								</td>
 						<td data-th="Empresa">{{ $estimate->client->company  }}</td>
-				                <td data-th="Ejecutivo">{{ $estimate->user->name }}</td>
+				                <td data-th="Ejecutivo">{{ ($estimate->user) ? $estimate->user->name : 'Usuario eliminado' }}</td>
 				                <td data-th="Servicio">{{ $estimate->service }}</td>
                                 <td data-th="Estatus">
                                     @if (!$estimate->discount)
